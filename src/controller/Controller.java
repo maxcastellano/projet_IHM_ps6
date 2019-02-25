@@ -1,11 +1,8 @@
-package sample;
+package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.util.Callback;
-
-import java.util.List;
+import model.Model;
 
 
 public class Controller {
