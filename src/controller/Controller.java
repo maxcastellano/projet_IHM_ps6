@@ -11,9 +11,6 @@ public class Controller {
 
     public void init(){
         Model model = new Model();
-        listeDepense = new ListView<>();
-        listeDepense.getItems().add(model.getListDepense().get(0));
-        listeDepense.getItems().add(model.getListDepense().get(1));
-        listeDepense.getItems().add(model.getListDepense().get(2));
+        listeDepense.setItems(model.getListDepense());
     }
 }

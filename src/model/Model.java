@@ -1,7 +1,11 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class Model {
     private List<String> listDepense;
@@ -13,8 +17,8 @@ public class Model {
         listDepense.add("12 Jan  20.00€");
     }
 
-    public List<String> getListDepense(){
-        return listDepense;
+    public ObservableList<String> getListDepense(){
+        return FXCollections.observableArrayList(listDepense);
     }
 
 }

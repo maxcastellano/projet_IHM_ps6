@@ -65,7 +65,7 @@
          <children>
             <HBox prefHeight="160.0" prefWidth="480.0">
                <children>
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="listeDepense" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
                   <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="243.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
