@@ -1,9 +1,9 @@
+import controller.AccueilController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import controller.Controller;
 import view.View;
 
 public class Main extends Application {
@@ -14,18 +14,18 @@ public class Main extends Application {
         //primaryStage.setScene(new Scene(root, 300, 275));
 
         FXMLLoader loader = new FXMLLoader();
-        //Create a controller
-        Controller controller =new Controller();
-        //Attach controller
-        loader.setController(controller);
+        //Create a accueilController
+        AccueilController accueilController =new AccueilController();
+        //Attach accueilController
+        loader.setController(accueilController);
         //Attach XML File
-        Parent root = loader.load(getClass().getResourceAsStream(View.XML_FILE));
+        Parent root = loader.load(getClass().getResourceAsStream(View.ACCUEIL));
         //Attach css
-        //Initialize controller
-        controller.init();
+        //Initialize accueilController
+        accueilController.init();
         //Create the view
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle(View.LABEL);
+        primaryStage.setTitle("Accueil");
         //Show the view
         primaryStage.show();
     }

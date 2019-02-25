@@ -1,12 +1,13 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
-import model.Model;
+import model.AccueilModel;
 
 
-public class Controller {
+public class AccueilController {
     @FXML
     private ListView<String> listeDepense;
 
@@ -14,10 +15,11 @@ public class Controller {
     private ChoiceBox<String> choicebox;
 
 
-    public void init(){
-        Model model = new Model();
-        listeDepense.setItems(model.getListDepense());
 
+
+    public void init(){
+        AccueilModel accueilModel = new AccueilModel();
+        listeDepense.setItems(accueilModel.getListDepense());
         choicebox.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choicebox.getSelectionModel().select(1);
 

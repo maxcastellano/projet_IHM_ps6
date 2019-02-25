@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class Model {
+public class AccueilModel {
     private List<String> listDepense;
 
-    public Model(){
+    public AccueilModel(){
         listDepense = new ArrayList();
         listDepense.add("2 Jan              7.50€");    //Tous les prix ont 4 tab
         listDepense.add("4 Jan              12.50€");
