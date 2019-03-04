@@ -1,10 +1,13 @@
-import controller.AccueilController;
+package program;
+
+import program.controller.AccueilController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.View;
+
+import static program.View.ACCUEIL;
 
 public class Main extends Application {
 
