@@ -1,4 +1,4 @@
-package controller;
+package program.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.AccueilModel;
+import program.model.AccueilModel;
 
 import javafx.event.*;
+import program.model.Article;
+
+
 import java.io.IOException;
 
-import static view.View.*;
+import static program.View.HISTORIQUE_DACHATS;
+import static program.View.LISTE_COURSES;
+import static program.View.PROFIL;
 
 
 public class AccueilController {
@@ -47,7 +52,30 @@ public class AccueilController {
         historiquebouton.setOnAction(event -> gothistorique(event));
     }
 
+    private void goTo(String view, String title,ActionEvent event){
+
+        FXMLLoader loader = new FXMLLoader();
+
+        Parent parent;
+        try {
+            parent = loader.load(getClass().getResourceAsStream(view));
+            Scene scene = new Scene(parent);
+
+            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.setTitle(title);
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void gotolistescourses(ActionEvent event) {
+
+        //this.goTo("Liste des dépenses",LISTE_COURSES, event);
 
         FXMLLoader loader = new FXMLLoader();
 

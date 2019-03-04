@@ -1,11 +1,10 @@
-package model;
+package program.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 public class AccueilModel {
     private List<String> listDepense;
@@ -20,6 +19,7 @@ public class AccueilModel {
     public ObservableList<String> getListDepense(){
         return FXCollections.observableArrayList(listDepense);
     }
+
 
 }
 
