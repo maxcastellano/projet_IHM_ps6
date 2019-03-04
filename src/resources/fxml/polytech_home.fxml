@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="320.0" prefWidth="130.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Listes de courses">
+            <Button fx:id="listedecoursesbouton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Listes de courses">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
@@ -25,17 +25,17 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Articles">
+            <Button fx:id="articlesbouton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Articles">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Historique d'achats">
+            <Button fx:id="historiquebouton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Historique d'achats">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Profil">
+            <Button fx:id="profilbouton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Profil">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
