@@ -91,7 +91,12 @@ public class AccueilController {
 
         Parent historiqueparent;
         try {
+
+            HistoriqueAchatController historiqueAchatController = new HistoriqueAchatController();
+            loader.setController(historiqueAchatController);
+
             historiqueparent = loader.load(getClass().getResourceAsStream(HISTORIQUE_DACHATS));
+            historiqueAchatController.init();
             Scene historiquescene = new Scene(historiqueparent);
 
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
