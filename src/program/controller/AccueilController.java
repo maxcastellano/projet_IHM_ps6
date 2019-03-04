@@ -100,12 +100,16 @@ public class AccueilController {
 
         Parent profilparent;
         try {
+            ProfilController profilController = new ProfilController();
+            loader.setController(profilController);
             profilparent = loader.load(getClass().getResourceAsStream(PROFIL));
             Scene profilscene = new Scene(profilparent);
 
+            profilController.init();
+
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(profilscene);
-            window.setTitle("Arcticles");
+            window.setTitle("Profil");
 
             window.show();
 
@@ -119,7 +123,12 @@ public class AccueilController {
 
         Parent historiqueparent;
         try {
+
+            HistoriqueAchatController historiqueAchatController = new HistoriqueAchatController();
+            loader.setController(historiqueAchatController);
+
             historiqueparent = loader.load(getClass().getResourceAsStream(HISTORIQUE_DACHATS));
+            historiqueAchatController.init();
             Scene historiquescene = new Scene(historiqueparent);
 
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();

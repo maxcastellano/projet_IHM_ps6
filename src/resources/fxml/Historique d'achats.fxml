@@ -21,7 +21,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Accueil">
+            <Button fx:id="accueilbouton" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Accueil">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -50,7 +50,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                  <ListView fx:id="listHA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <VBox.margin>
                         <Insets bottom="45.0" />
                      </VBox.margin>
@@ -64,7 +64,7 @@
                         <Insets left="100.0" right="100.0" />
                      </VBox.margin>
                   </Label>
-                  <ChoiceBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                  <ChoiceBox fx:id="choiceboxHA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <VBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </VBox.margin>
