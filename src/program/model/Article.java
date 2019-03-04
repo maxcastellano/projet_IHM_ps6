@@ -1,20 +1,17 @@
 package program.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class Article {
-    private final IntegerProperty prix;
+    private final LongProperty prix;
     private final StringProperty nom;
 
-    public Article(String nom, int prix){
-        this.prix = new SimpleIntegerProperty(prix);
+    public Article(String nom, long prix){
+        this.prix = new SimpleLongProperty(prix);
         this.nom = new SimpleStringProperty(nom);
     }
 
-    public int getPrix() {
+    public long getPrix() {
         return prix.get();
     }
 

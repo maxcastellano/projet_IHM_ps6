@@ -1,7 +1,7 @@
 package program.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,28 +9,31 @@ import java.util.List;
 
 public class ListCourse {
 
-    private final IntegerProperty id;
+    private final LongProperty id;
     private ObservableList<Article> listCourse;
-    private IntegerProperty prix;
+    private LongProperty prix;
 
-    public ListCourse(List<Article> listCourse, int id){
-        this.id = new SimpleIntegerProperty(id);
+    public ListCourse(List<Article> listCourse, long id){
+        this.id = new SimpleLongProperty(id);
         this.listCourse = FXCollections.observableArrayList();
         int prixInter = 0;
         for(Article article : listCourse){
             this.listCourse.add(article);
             prixInter += article.getPrix();
         }
-        this.prix = new SimpleIntegerProperty(prixInter);
+        this.prix = new SimpleLongProperty(prixInter);
     }
 
-    public int getPrix() {
+    public long getPrix() {
         return prix.get();
     }
 
-    public int getId(){
+    public long getId(){
         return id.get();
     }
 
+    public ObservableList<Article> getListCourse(){
+        return listCourse;
+    }
 
 }
