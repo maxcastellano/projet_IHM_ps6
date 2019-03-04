@@ -1,4 +1,4 @@
-package controller;
+package program.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.HistoriqueAchats;
+import program.model.HistoriqueAchats;
 
 import java.io.IOException;
 
-import static view.View.ACCUEIL;
-import static view.View.HISTORIQUE_DACHATS;
 
 public class HistoriqueAchatController {
     @FXML
@@ -43,9 +41,7 @@ public class HistoriqueAchatController {
         try {
 
 
-
-            accueilparent = loader.load(getClass().getResource("../resources/fxml/polytech_home.fxml"));
-
+            accueilparent = loader.load(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
             Scene accueilscene = new Scene(accueilparent);
 
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
