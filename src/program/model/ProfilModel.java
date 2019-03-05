@@ -34,4 +34,24 @@ public class ProfilModel {
         return name;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSeuil(double seuil) {
+        this.seuil = seuil;
+    }
+
 }
