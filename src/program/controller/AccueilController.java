@@ -75,18 +75,22 @@ public class AccueilController {
 
     private void gotolistescourses(ActionEvent event) {
 
-        //this.goTo("Liste des dépenses",LISTE_COURSES, event);
 
         FXMLLoader loader = new FXMLLoader();
 
         Parent listedepenseparent;
         try {
+
+            ListesCoursesController listesCoursesController = new ListesCoursesController();
+            loader.setController(listesCoursesController);
+
             listedepenseparent = loader.load(getClass().getResourceAsStream(LISTE_COURSES));
-            Scene listedepenseScene = new Scene(listedepenseparent);
+            listesCoursesController.init();
+            Scene coursesScene = new Scene(listedepenseparent);
 
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
-            window.setScene(listedepenseScene);
-            window.setTitle("Liste des dépenses");
+            window.setScene(coursesScene);
+            window.setTitle("Listes Courses");
 
             window.show();
 

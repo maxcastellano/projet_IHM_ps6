@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import program.controller.AccueilController;
 
+import static program.View.ACCUEIL;
+import static program.View.START;
+
 public class Main extends Application {
 
     @Override
@@ -20,7 +23,7 @@ public class Main extends Application {
         //Attach accueilController
         loader.setController(accueilController);
         //Attach XML File
-        Parent root = loader.load(getClass().getResourceAsStream(View.ACCUEIL));
+        Parent root = loader.load(getClass().getResourceAsStream(START));
         //Attach css
         //Initialize accueilController
         accueilController.init();
