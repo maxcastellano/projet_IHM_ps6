@@ -9,6 +9,7 @@ public class View {
     public static final String MODIFIER_PORFIL = "../../resources/fxml/modifierprofil.fxml";
     public static final String HISTORIQUE_DACHATS = "../../resources/fxml/Historique d'achats.fxml";
     public static final String CREER_LISTE = "../../resources/fxml/creeruneliste.fxml";
+    public static final String ARTICLEJSON = "src/resources/json/article.json";
 
 
 

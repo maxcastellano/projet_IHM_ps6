@@ -1,7 +1,11 @@
 package program;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public enum Catégorie {
 
+    Tout ("Tout"),
     Entrée ("Entrée"),
     Plat ("Plat"),
     Dessert ("Dessert");
@@ -15,4 +19,5 @@ public enum Catégorie {
     public String toSTring(){
         return name;
     }
+
 }

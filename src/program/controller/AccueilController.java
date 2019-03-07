@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.View;
 import program.model.AccueilModel;
 
 import javafx.event.*;
@@ -16,9 +17,7 @@ import program.model.Article;
 
 import java.io.IOException;
 
-import static program.View.HISTORIQUE_DACHATS;
-import static program.View.LISTE_COURSES;
-import static program.View.PROFIL;
+import static program.View.*;
 
 
 public class AccueilController {
@@ -50,27 +49,7 @@ public class AccueilController {
         listedecoursesbouton.setOnAction(event -> gotolistescourses(event));
         profilbouton.setOnAction(event -> gotoprofil(event));
         historiquebouton.setOnAction(event -> gothistorique(event));
-    }
-
-    private void goTo(String view, String title,ActionEvent event){
-
-        FXMLLoader loader = new FXMLLoader();
-
-        Parent parent;
-        try {
-            parent = loader.load(getClass().getResourceAsStream(view));
-            Scene scene = new Scene(parent);
-
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.setTitle(title);
-
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        articles.setOnAction(event -> gotoarticle(event));
     }
 
     private void gotolistescourses(ActionEvent event) {
@@ -138,6 +117,31 @@ public class AccueilController {
             Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(historiquescene);
             window.setTitle("Historique d'achats");
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void gotoarticle(ActionEvent event){
+
+        FXMLLoader loader = new FXMLLoader();
+
+        Parent parent;
+        try {
+
+            ArticlesController controller = new ArticlesController();
+            loader.setController(controller);
+
+            parent = loader.load(getClass().getResourceAsStream(ARTICLES));
+            controller.init();
+            Scene scene = new Scene(parent);
+
+            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.setTitle("Articles");
 
             window.show();
 

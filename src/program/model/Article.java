@@ -18,4 +18,9 @@ public class Article {
     public String getNom(){
         return nom.get();
     }
+
+    public StringProperty getStrPrix(){
+        return new SimpleStringProperty(this.prix.getValue().toString() + " €");}
+
+    public StringProperty getStrNom(){return this.nom;}
 }
