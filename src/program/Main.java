@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import program.controller.AccueilController;
 
-import static program.View.ACCUEIL;
 import static program.View.START;
 
 public class Main extends Application {

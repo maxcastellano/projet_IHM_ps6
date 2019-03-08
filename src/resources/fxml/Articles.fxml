@@ -34,7 +34,7 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin></ComboBox>
-            <TableView fx:id="list" prefHeight="214.0" prefWidth="314.0">
+            <TableView fx:id="list" onMouseClicked="#afficher" prefHeight="214.0" prefWidth="314.0">
               <columns>
                 <TableColumn fx:id="nomcolumn" prefWidth="206.4000107049942" text="Nom" />
                 <TableColumn fx:id="prixcolumn" minWidth="0.800048828125" prefWidth="107.199951171875" text="Prix" />
