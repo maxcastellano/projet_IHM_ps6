@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,11 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.ReadListCourseJSON;
 import program.View;
 import program.model.AccueilModel;
 
 import javafx.event.*;
 import program.model.Article;
+import program.model.ListCourse;
 
 
 import java.io.IOException;
@@ -21,6 +24,7 @@ import static program.View.*;
 
 
 public class AccueilController {
+
     @FXML
     private ListView<String> listeDepense;
 
@@ -31,7 +35,7 @@ public class AccueilController {
     private Button listedecoursesbouton;
 
     @FXML
-    private Button articles;
+    private Button articlesbouton;
 
     @FXML
     private Button historiquebouton;
@@ -39,85 +43,79 @@ public class AccueilController {
     @FXML
     private Button profilbouton;
 
+    private ObservableList<ListCourse> listCourses;
 
     public void init(){
         AccueilModel accueilModel = new AccueilModel();
         listeDepense.setItems(accueilModel.getListDepense());
         choicebox.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choicebox.getSelectionModel().select(1);
+        this.listCourses = ReadListCourseJSON.readFromJSON(LISTEJSON);
 
-        listedecoursesbouton.setOnAction(event -> gotolistescourses(event));
-        profilbouton.setOnAction(event -> gotoprofil(event));
-        historiquebouton.setOnAction(event -> gothistorique(event));
-        articles.setOnAction(event -> gotoarticle(event));
+        listedecoursesbouton.setOnAction(event -> gotolistescourses());
+        profilbouton.setOnAction(event -> gotoprofil());
+        historiquebouton.setOnAction(event -> gothistorique());
+        articlesbouton.setOnAction(event -> gotoarticle());
+        
     }
 
-    private void gotolistescourses(ActionEvent event) {
+    private void gotolistescourses() {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Listes_Courses.fxml"));
 
-        FXMLLoader loader = new FXMLLoader();
-
-        Parent listedepenseparent;
         try {
+            Stage window = (Stage) listedecoursesbouton.getScene().getWindow();
+            Parent listedepenseparent = loader.load(getClass().getResourceAsStream(LISTE_COURSES));
 
-            ListesCoursesController listesCoursesController = new ListesCoursesController();
-            loader.setController(listesCoursesController);
-
-            listedepenseparent = loader.load(getClass().getResourceAsStream(LISTE_COURSES));
-            listesCoursesController.init();
             Scene coursesScene = new Scene(listedepenseparent);
-
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(coursesScene);
             window.setTitle("Listes Courses");
 
+            ((ListesCoursesController)loader.getController()).init();
+
             window.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private void gotoprofil(ActionEvent event){
+    private void gotoprofil(){
 
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Profil.fxml"));
 
-        Parent profilparent;
         try {
-            ProfilController profilController = new ProfilController();
-            loader.setController(profilController);
-            profilparent = loader.load(getClass().getResourceAsStream(PROFIL));
+
+            Stage window = (Stage) profilbouton.getScene().getWindow();
+            Parent profilparent = loader.load(getClass().getResourceAsStream(PROFIL));
+
             Scene profilscene = new Scene(profilparent);
-
-            profilController.init();
-
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(profilscene);
             window.setTitle("Profil");
 
+            ((ProfilController)loader.getController()).init();
+
             window.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private void gothistorique(ActionEvent event){
 
-        FXMLLoader loader = new FXMLLoader();
+    private void gothistorique(){
 
-        Parent historiqueparent;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Historique d'achats.fxml"));
+
         try {
 
-            HistoriqueAchatController historiqueAchatController = new HistoriqueAchatController();
-            loader.setController(historiqueAchatController);
-
-            historiqueparent = loader.load(getClass().getResourceAsStream(HISTORIQUE_DACHATS));
-            historiqueAchatController.init();
+            Stage window = (Stage) historiquebouton.getScene().getWindow();
+            Parent historiqueparent = loader.load(getClass().getResourceAsStream(HISTORIQUE_DACHATS));
             Scene historiquescene = new Scene(historiqueparent);
 
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(historiquescene);
             window.setTitle("Historique d'achats");
 
+            ((HistoriqueAchatController)loader.getController()).init();
+
             window.show();
 
         } catch (IOException e) {
@@ -125,23 +123,18 @@ public class AccueilController {
         }
     }
 
-    private void gotoarticle(ActionEvent event){
+    private void gotoarticle(){
 
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Articles.fxml"));
 
-        Parent parent;
         try {
-
-            ArticlesController controller = new ArticlesController();
-            loader.setController(controller);
-
-            parent = loader.load(getClass().getResourceAsStream(ARTICLES));
-            controller.init();
-            Scene scene = new Scene(parent);
-
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) articlesbouton.getScene().getWindow();
+            Parent articleparent = loader.load(getClass().getResourceAsStream(ARTICLES));
+            Scene scene = new Scene(articleparent);
             window.setScene(scene);
             window.setTitle("Articles");
+
+            ((ArticlesController)loader.getController()).init();
 
             window.show();
 

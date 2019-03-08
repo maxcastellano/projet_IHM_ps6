@@ -11,9 +11,8 @@ import java.io.FileReader;
 
 public class ReadArticleJSON {
 
-    private ObservableList<Article> listArticle = FXCollections.observableArrayList();
-
-    public ObservableList<Article> readFromJSON(String filePath){
+    public static ObservableList<Article> readFromJSON(String filePath){
+        ObservableList<Article> listArticle = FXCollections.observableArrayList();
         try{
             FileReader reader = new FileReader(filePath);
 

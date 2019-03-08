@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadListCourseJSON {
-    private ObservableList<ListCourse> listCourse = FXCollections.observableArrayList();
 
-    public ObservableList<ListCourse> readFromJSON(String filePath){
+    public static ObservableList<ListCourse> readFromJSON(String filePath){
+        ObservableList<ListCourse> listCourse = FXCollections.observableArrayList();
         try {
             FileReader reader = new FileReader(filePath);
 

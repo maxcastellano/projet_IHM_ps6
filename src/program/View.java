@@ -10,6 +10,7 @@ public class View {
     public static final String HISTORIQUE_DACHATS = "../../resources/fxml/Historique d'achats.fxml";
     public static final String CREER_LISTE = "../../resources/fxml/creeruneliste.fxml";
     public static final String ARTICLEJSON = "src/resources/json/article.json";
+    public static final String LISTEJSON = "src/resources/json/listCourse.json";
     public static final String VIEWARTICLE = "../../resources/fxml/ViewArticle.fxml";
 
 

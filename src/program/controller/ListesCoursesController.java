@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.View;
 import program.model.Article;
 import program.model.ListCourse;
 
@@ -38,28 +40,30 @@ public class ListesCoursesController {
     private Button creerlistebouton;
 
     public void init() {
-        retouraccueil.setOnAction(event -> gotoAccueil(event));
 
-        choicebox.getItems().addAll("Toutes(chronologique)", "Favorites");
-        choicebox.getSelectionModel().select(0);
+        this.choicebox.getItems().addAll("Toutes(chronologique)", "Favorites");
+        this.choicebox.getSelectionModel().select(0);
 
-        creerlistebouton.setOnAction(event -> goToCreateList(event));
+        this.creerlistebouton.setOnAction(event -> goToCreateList(event));
+
+        this.retouraccueil.setOnAction(event -> gotoAccueil());
+
     }
 
 
-    private void gotoAccueil(ActionEvent event) {
+    private void gotoAccueil() {
 
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
 
-        Parent accueilparent;
         try {
+            Stage window = (Stage) retouraccueil.getScene().getWindow();
 
-            accueilparent = loader.load(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
+            Parent accueilparent = loader.load(getClass().getResourceAsStream(ACCUEIL));
             Scene accueilscene = new Scene(accueilparent);
-
-            Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             window.setScene(accueilscene);
             window.setTitle("Accueil");
+
+            ((AccueilController)loader.getController()).init();
 
             window.show();
 

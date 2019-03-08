@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.View;
 import program.model.HistoriqueAchats;
 
 import java.io.IOException;
@@ -30,23 +31,22 @@ public class HistoriqueAchatController {
         choiceboxHA.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choiceboxHA.getSelectionModel().select(1);
 
-        accueilbouton.setOnAction(event -> gotoaccueil(event));
+        accueilbouton.setOnAction(event -> gotoaccueil());
     }
 
-    private void gotoaccueil(ActionEvent event){
+    private void gotoaccueil(){
 
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
 
-        Parent accueilparent;
         try {
-
-
-            accueilparent = loader.load(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
+            Stage window = (Stage) accueilbouton.getScene().getWindow();
+            Parent accueilparent = loader.load(getClass().getResourceAsStream(View.ACCUEIL));
             Scene accueilscene = new Scene(accueilparent);
 
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             window.setScene(accueilscene);
             window.setTitle("Accueil");
+
+            ((AccueilController)loader.getController()).init();
 
             window.show();
 

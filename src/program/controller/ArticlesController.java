@@ -2,6 +2,7 @@ package program.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static program.View.ACCUEIL;
 import static program.View.VIEWARTICLE;
 
 public class ArticlesController {
@@ -24,6 +26,8 @@ public class ArticlesController {
     @FXML
     private ComboBox<Catégorie> comboBox;
 
+    @FXML
+    private Button buttonAccueil;
 
     @FXML
     private TableView<Article> list;
@@ -58,6 +62,7 @@ public class ArticlesController {
         comboBox.getItems().setAll(Catégorie.values());
         comboBox.getSelectionModel().select(0);
 
+        buttonAccueil.setOnAction(event -> gotoAccueil());
     }
 
     public void afficher(){
@@ -98,7 +103,26 @@ public class ArticlesController {
     }
 
 
+    private void gotoAccueil() {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
+
+        try {
+            Stage window = (Stage) buttonAccueil.getScene().getWindow();
+
+            Parent accueilparent = loader.load(getClass().getResourceAsStream(ACCUEIL));
+            Scene accueilscene = new Scene(accueilparent);
+            window.setScene(accueilscene);
+            window.setTitle("Accueil");
+
+            ((AccueilController)loader.getController()).init();
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -15,6 +15,9 @@ import program.model.ProfilModel;
 import javax.swing.text.TableView;
 import java.io.IOException;
 
+import static program.View.ACCUEIL;
+import static program.View.MODIFIER_PORFIL;
+
 public class ProfilController {
 
     @FXML
@@ -51,30 +54,33 @@ public class ProfilController {
         city.setText(profilModel.getCity());
         limit.setText(String.valueOf(profilModel.getSeuil()));
 
-        accbouton.setOnAction(event -> gotoacc(event));
-        partagerbouton.setOnAction(event -> partagerMessage(event));
-        modifierprofil.setOnAction(event -> allerdansmodifierprofil(event));
+        accbouton.setOnAction(event -> gotoacc());
+        partagerbouton.setOnAction(event -> partagerMessage());
+        modifierprofil.setOnAction(event -> allerdansmodifierprofil());
     }
 
-    private void gotoacc(ActionEvent event){
+    private void gotoacc(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
 
         try {
-            Parent accparent = FXMLLoader.load(getClass().getResource("../../resources/fxml/polytech_home.fxml"));
-            Scene accscene = new Scene(accparent);
+            Stage window = (Stage) accbouton.getScene().getWindow();
 
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
-            window.setScene(accscene);
+            Parent accueilparent = loader.load(getClass().getResourceAsStream(ACCUEIL));
+            Scene accueilscene = new Scene(accueilparent);
+            window.setScene(accueilscene);
             window.setTitle("Accueil");
+
+            ((AccueilController)loader.getController()).init();
 
             window.show();
 
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void partagerMessage(ActionEvent event){
+    private void partagerMessage(){
         Alert alert =new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Partage");
         alert.setContentText("Vous avez partagé vos informations");
@@ -82,15 +88,18 @@ public class ProfilController {
         alert.showAndWait();
     }
 
-    private void allerdansmodifierprofil(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Parent modifparent = loader.load(getClass().getResourceAsStream(View.MODIFIER_PORFIL));
-            Scene modifscene = new Scene(modifparent);
+    private void allerdansmodifierprofil() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/modifierprofil.fxml"));
 
-            Stage window = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
-            window.setScene(modifscene);
-            window.setTitle("Modifier Profil");
+        try {
+            Stage window = (Stage) modifierprofil.getScene().getWindow();
+
+            Parent modifierparent = loader.load(getClass().getResourceAsStream(MODIFIER_PORFIL));
+            Scene modifierscene = new Scene(modifierparent);
+            window.setScene(modifierscene);
+            window.setTitle("Modifier profil");
+
+            //((ModifierProfilController)loader.getController()).init();
 
             window.show();
 
