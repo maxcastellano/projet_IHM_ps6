@@ -1,0 +1,137 @@
+package program.controller;
+
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import program.View;
+import program.model.Article;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observable;
+
+import static program.View.ACCUEIL;
+
+
+public class CreerListController {
+
+    @FXML
+    private Button ajouterbouton;
+
+    @FXML
+    private Button annulerbouton;
+
+    @FXML
+    private Button creerbouton;
+
+    @FXML
+    private ListView<String> listearticles ;
+
+    @FXML
+    private ListView<String> listecree;
+
+    @FXML
+    private TextField saisienom;
+
+    @FXML
+    private Text total;
+
+    private long prixtotal;
+
+    private ArrayList<Article> articleArrayList = new ArrayList<>();
+
+    public void init (ObservableList<Article>listedesarticles){
+
+        for (Article article: listedesarticles){
+            String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
+            this.listearticles.getItems().add(articleString);
+            this.articleArrayList.addAll(listedesarticles);
+        }
+        this.listearticles.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.ajouterbouton.setOnAction(event -> addTo());
+        this.prixtotal = 0;
+        this.creerbouton.setOnAction(event -> creerListe());
+        this.saisienom.getCharacters();
+        this.annulerbouton.setOnAction(event -> retourListeCourses());
+    }
+
+    private void addTo() {
+
+        ObservableList listArticles = listearticles.getSelectionModel().getSelectedItems();
+            for (Object articlechoisi : listArticles) {
+                this.listecree.getItems().add(String.valueOf(articlechoisi));
+                this.total.setText(String.valueOf(prixtotal+=getPrix()));
+            }
+        }
+
+
+    private long getPrix (){
+
+        ObservableList listArticles = listearticles.getSelectionModel().getSelectedItems();
+        for (Article article : articleArrayList) {
+            String articleString = article.getNom() + "\t\t" + article.getPrix() + "€";
+            for (Object articleobj : listArticles) {
+                if (articleString.equals(String.valueOf(articleobj))) {
+                    return article.getPrix();
+                }
+            }
+        }
+        return 0;
+    }
+
+    private void creerListe(){
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Listes_Courses.fxml"));
+
+        try {
+            Stage window = (Stage) creerbouton.getScene().getWindow();
+
+            Parent listedescoursesparent = loader.load(getClass().getResourceAsStream(View.LISTE_COURSES));
+            Scene listedescoursesscene = new Scene(listedescoursesparent);
+            window.setScene(listedescoursesscene);
+            window.setTitle("Liste des Courses");
+
+            ((ListesCoursesController)loader.getController()).addListeCourse(this.saisienom.getText(),getTotal().getText()+"€");
+            ((ListesCoursesController)loader.getController()).init();
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Text getTotal() {
+        return total;
+    }
+
+    private void retourListeCourses(){
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Listes_Courses.fxml"));
+
+        try {
+            Stage window = (Stage) annulerbouton.getScene().getWindow();
+
+            Parent listedescoursesparent = loader.load(getClass().getResourceAsStream(View.LISTE_COURSES));
+            Scene listedescoursesscene = new Scene(listedescoursesparent);
+            window.setScene(listedescoursesscene);
+            window.setTitle("Liste des Courses");
+
+            ((ListesCoursesController)loader.getController()).init();
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
