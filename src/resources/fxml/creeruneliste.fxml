@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.CreerListController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -22,10 +22,9 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField GridPane.columnIndex="1">
+            <TextField fx:id="saisienom" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="100.0" />
                </GridPane.margin>
@@ -35,16 +34,6 @@
                   <Insets left="190.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Insérer une date " GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="190.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField text="&quot;10-03-2019&quot;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="100.0" />
-               </GridPane.margin>
-            </TextField>
          </children>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />
@@ -52,25 +41,33 @@
       </GridPane>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER" />
    </left>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Ajouter un ou des article(s)" />
-            <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <HBox>
                <VBox.margin>
                   <Insets bottom="10.0" left="100.0" right="100.0" top="10.0" />
                </VBox.margin>
-            </ListView>
+               <children>
+                  <ListView fx:id="listearticles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <ListView fx:id="listecree" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ListView>
+               </children>
+            </HBox>
             <VBox>
                <children>
-                  <Label text="Label">
+                  <Label text="Total">
                      <VBox.margin>
                         <Insets left="400.0" />
                      </VBox.margin>
                   </Label>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <Text fx:id="total" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <VBox.margin>
                         <Insets left="400.0" />
                      </VBox.margin>
@@ -79,12 +76,17 @@
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter">
+                  <Button fx:id="ajouterbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter">
                      <HBox.margin>
                         <Insets bottom="10.0" left="350.0" right="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler">
+                  <Button fx:id="creerbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Créer">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="20.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="annulerbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler">
                      <HBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>

@@ -26,7 +26,7 @@ public class ReadListCourseJSON {
             for(Object o : lang){
                 List<Article> listCourseToAdd = new ArrayList<>();
                 JSONObject innerObj = (JSONObject) o;
-                long id = (long) innerObj.get("id");
+                String name = (String) innerObj.get("name");
                 JSONArray listCourseRead = (JSONArray) innerObj.get("listCourse");
                 for(Object oList : listCourseRead){
                     JSONObject innerObjList = (JSONObject) oList;
@@ -34,7 +34,7 @@ public class ReadListCourseJSON {
                     long prix = (long) innerObjList.get("prix");
                     listCourseToAdd.add(new Article(nom, prix));
                 }
-                listCourse.add(new ListCourse(listCourseToAdd, id));
+                listCourse.add(new ListCourse(listCourseToAdd, name));
             }
         }
         catch (Exception e){

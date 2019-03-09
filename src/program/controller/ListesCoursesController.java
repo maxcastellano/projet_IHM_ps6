@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.ReadArticleJSON;
 import program.View;
 import program.model.Article;
 import program.model.ListCourse;
@@ -25,7 +27,7 @@ import static program.View.LISTE_COURSES;
 public class ListesCoursesController {
 
     @FXML
-    private ListView<String> listeDepense;
+    private  ListView<String> listecourses;
 
     @FXML
     private ChoiceBox<String> choicebox;
@@ -39,17 +41,25 @@ public class ListesCoursesController {
     @FXML
     private Button creerlistebouton;
 
-    public void init() {
+    private ObservableList<Article> articles;
+    private static ObservableList<String> listCourseObservableList = FXCollections.observableArrayList();
 
+    public void init() {
+        listecourses.getItems().addAll(listCourseObservableList);
         this.choicebox.getItems().addAll("Toutes(chronologique)", "Favorites");
         this.choicebox.getSelectionModel().select(0);
 
-        this.creerlistebouton.setOnAction(event -> goToCreateList(event));
+        this.creerlistebouton.setOnAction(event -> goToCreateList());
 
         this.retouraccueil.setOnAction(event -> gotoAccueil());
 
+        this.articles = ReadArticleJSON.readFromJSON(View.ARTICLEJSON);
+
     }
 
+    public void addListeCourse(String name, String prix){
+        listCourseObservableList.add(name +"\t" + prix);
+    }
 
     private void gotoAccueil() {
 
@@ -72,21 +82,21 @@ public class ListesCoursesController {
         }
     }
 
-    private void goToCreateList(ActionEvent event) {
+    private void goToCreateList() {
 
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/creeruneliste.fxml"));
 
-        Parent creerListeparent;
         try {
-
-            creerListeparent = loader.load(getClass().getResource("../../resources/fxml/creeruneliste.fxml"));
+            Stage stage = (Stage) creerlistebouton.getScene().getWindow();
+            Parent creerListeparent = loader.load(getClass().getResourceAsStream(CREER_LISTE));
             Scene creerListeScene = new Scene(creerListeparent);
 
-            Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            window.setScene(creerListeScene);
-            window.setTitle("Creer Liste");
+            stage.setScene(creerListeScene);
+            stage.setTitle("Creer Liste");
 
-            window.show();
+            ((CreerListController)loader.getController()).init(this.articles);
+
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
