@@ -22,7 +22,7 @@
 }
 
 .button:hover{
-    -fx-background-color: blue;
+    -fx-background-color: cyan;
 }
 
 .label
