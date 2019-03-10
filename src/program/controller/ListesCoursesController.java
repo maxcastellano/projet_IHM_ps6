@@ -1,6 +1,7 @@
 package program.controller;
 
 import javafx.beans.Observable;
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,8 +58,15 @@ public class ListesCoursesController {
     private static ObservableList<ListCourse> listeCourseObservableList ;
     private static ObservableList<String> listeDepenseObservableList ;
     private ListCourse currentListeCourse = null;
+    private long depensemontant;
+    private long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init(ObservableList<ListCourse> listCourses,ObservableList<String>listeDepenses) {
+    public void init(ObservableList<ListCourse> listCourses, ObservableList<String>listeDepenses, ObservableLongValue depenseobservalbe,ObservableLongValue seuilobservable) {
+
+        this.depenseobservable = depenseobservalbe;
+        this.seuilobservable = seuilobservable;
         this.listeDepenseObservableList = listeDepenses;
         listeCourseObservableList = listCourses;
         this.tablelistes.setItems(listeCourseObservableList);
@@ -96,7 +104,7 @@ public class ListesCoursesController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init(listeDepenseObservableList);
+            ((AccueilController)loader.getController()).init(listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             window.show();
 
@@ -117,7 +125,7 @@ public class ListesCoursesController {
             stage.setScene(creerListeScene);
             stage.setTitle("Creer Liste");
 
-            ((CreerListController)loader.getController()).init(this.articles,listeCourseObservableList,listeDepenseObservableList);
+            ((CreerListController)loader.getController()).init(this.articles,listeCourseObservableList,listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             stage.show();
 
@@ -139,7 +147,7 @@ public class ListesCoursesController {
             window.setTitle("Liste");
 
             ((ListeController) loader.getController()).initListe(currentListeCourse);
-            ((ListeController) loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
+            ((ListeController) loader.getController()).init(listeCourseObservableList,listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             window.show();
         }catch (IOException e){

@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,8 +48,14 @@ public class ArticlesController {
 
     private Article currentArticle =null;
     private ObservableList<String> listedepensesObservable;
+    private long depensemontant;
+    private long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init(ObservableList<String> listedepenses){
+    public void init(ObservableList<String> listedepenses, ObservableLongValue depenseobservable,ObservableLongValue seuilobservable){
+        this.depenseobservable = depenseobservable;
+        this.seuilobservable = seuilobservable;
         listedepensesObservable = listedepenses;
         reader = new ReadArticleJSON();
         articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
@@ -114,7 +121,7 @@ public class ArticlesController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init(listedepensesObservable);
+            ((AccueilController)loader.getController()).init(listedepensesObservable,this.depenseobservable,this.seuilobservable);
 
             window.show();
 

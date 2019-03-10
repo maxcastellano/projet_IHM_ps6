@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,9 +47,15 @@ public class ProfilController {
     private Button modifierprofil;
 
     private static ObservableList<String> listeDepensesObservable;
+    private long depensemontant;
+    private long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init (ObservableList<String>listedepenseObservable){
 
+    public void init (ObservableList<String>listedepenseObservable, ObservableLongValue depenseobservable, ObservableLongValue seuilobservable){
+        this.depenseobservable = depenseobservable;
+        this.seuilobservable = seuilobservable;
         listeDepensesObservable = listedepenseObservable;
         ProfilModel profilModel = new ProfilModel("Maxime","CASTELLANO","thune@unice.fr","New York",300);
 
@@ -74,7 +81,7 @@ public class ProfilController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init(listeDepensesObservable);
+            ((AccueilController)loader.getController()).init(listeDepensesObservable,this.depenseobservable,this.seuilobservable);
 
             window.show();
 

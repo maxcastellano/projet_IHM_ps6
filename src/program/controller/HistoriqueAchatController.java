@@ -1,5 +1,7 @@
 package program.controller;
 
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +31,14 @@ public class HistoriqueAchatController {
     private Button accueilbouton;
 
     private ObservableList<String> listedepensesObservable = FXCollections.observableArrayList();
+    private static long depensemontant;
+    private static long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init(ObservableList<String>listedepensesObservable){
+     void init(ObservableList<String>listedepensesObservable, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
+        this.depenseobservable = depenseobservalbe;
+        this.seuilobservable = seuilobservable;
         this.listedepensesObservable = listedepensesObservable;
         listHA.setItems(listedepensesObservable);
         choiceboxHA.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
@@ -50,8 +58,7 @@ public class HistoriqueAchatController {
 
             window.setScene(accueilscene);
             window.setTitle("Accueil");
-
-            ((AccueilController)loader.getController()).init(listedepensesObservable);
+            ((AccueilController)loader.getController()).init(listedepensesObservable,depenseobservable,seuilobservable);
 
             window.show();
 
@@ -60,7 +67,13 @@ public class HistoriqueAchatController {
         }
     }
 
-     void initListsDepenses(String listepayee, long prix){
+     void initListsDepenses(String listepayee){
         listedepensesObservable.add(listepayee);
     }
+    void totaldepense(long prix,ObservableLongValue depenseobservable){
+         long total = depenseobservable.get();
+         total+=prix;
+        ((SimpleLongProperty) depenseobservable).set(total);
+    }
+
 }

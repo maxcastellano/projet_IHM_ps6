@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadListCourseJSON;
 import program.model.AccueilModel;
@@ -41,11 +43,27 @@ public class AccueilController {
     @FXML
     private Button profilbouton;
 
+    @FXML
+    private Text depense;
+
+    @FXML
+    private Text seuil;
+
     private ObservableList<ListCourse> listCourses;
-    private static ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
-    public void init(ObservableList<String> listedepenseObservableListe){
+    private  ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
+    private  long depensemontant;
+    private static long seuilmontant;
+    private  ObservableLongValue depenseobservable;
+    private  ObservableLongValue seuilobservable;
+
+    public void init(ObservableList<String> listedepenseObservableListe, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
+
+        this.depenseobservable = depenseobservalbe;
+        this.seuilobservable = seuilobservable;
+        this.depense.setText(this.depenseobservable.get()+"€");
+        this.seuil.setText(this.seuilobservable.get()+"€");
+
         listedepenseObservable = listedepenseObservableListe;
-        AccueilModel accueilModel = new AccueilModel();
         listeDepense.setItems(listedepenseObservable);
         choicebox.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choicebox.getSelectionModel().select(1);
@@ -70,7 +88,7 @@ public class AccueilController {
             window.setScene(coursesScene);
             window.setTitle("Listes Courses");
 
-            ((ListesCoursesController)loader.getController()).init(this.listCourses,listedepenseObservable);
+            ((ListesCoursesController)loader.getController()).init(this.listCourses,listedepenseObservable,this.depenseobservable, this.seuilobservable);
 
             window.show();
 
@@ -91,7 +109,7 @@ public class AccueilController {
             window.setScene(profilscene);
             window.setTitle("Profil");
 
-            ((ProfilController)loader.getController()).init(listedepenseObservable);
+            ((ProfilController)loader.getController()).init(listedepenseObservable,this.depenseobservable,this.seuilobservable);
 
             window.show();
 
@@ -113,7 +131,7 @@ public class AccueilController {
             window.setScene(historiquescene);
             window.setTitle("Historique d'achats");
 
-            ((HistoriqueAchatController)loader.getController()).init(listedepenseObservable);
+            ((HistoriqueAchatController)loader.getController()).init(listedepenseObservable,this.depenseobservable, this.seuilobservable);
 
             window.show();
 
@@ -133,7 +151,7 @@ public class AccueilController {
             window.setScene(scene);
             window.setTitle("Articles");
 
-            ((ArticlesController)loader.getController()).init(listedepenseObservable);
+            ((ArticlesController)loader.getController()).init(listedepenseObservable,this.depenseobservable, this.seuilobservable);
 
             window.show();
 

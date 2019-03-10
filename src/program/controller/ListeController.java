@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -46,8 +47,14 @@ public class ListeController {
 
     private static ObservableList<ListCourse> listCourseObservableList;
     private static ObservableList<String>listedepenseObservable;
+    private long depensemontant;
+    private long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init(ObservableList<ListCourse> listCourses,ObservableList<String>listedepenseObservable){
+    public void init(ObservableList<ListCourse> listCourses, ObservableList<String>listedepenseObservable, ObservableLongValue depenseobservalbe,ObservableLongValue seuilobservable){
+        this.depenseobservable = depenseobservalbe;
+        this.seuilobservable = seuilobservable;
         this.listedepenseObservable = listedepenseObservable;
         listCourseObservableList = listCourses;
         this.retourliste.setOnAction(event -> retourListeCourses());
@@ -76,7 +83,7 @@ public class ListeController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).init(listCourseObservableList,listedepenseObservable);
+            ((ListesCoursesController)loader.getController()).init(listCourseObservableList,listedepenseObservable,this.depenseobservable,this.depenseobservable);
 
             window.show();
 
@@ -111,8 +118,9 @@ public class ListeController {
             window.setScene(historiquescene);
             window.setTitle("Liste des Dépenses");
 
-            ((HistoriqueAchatController) loader.getController()).initListsDepenses(listeachetee,listCoursechoisie.getPrix());
-            ((HistoriqueAchatController) loader.getController()).init(listedepenseObservable);
+            ((HistoriqueAchatController) loader.getController()).initListsDepenses(listeachetee);
+            ((HistoriqueAchatController)loader.getController()).totaldepense(listCoursechoisie.getPrix(),this.depenseobservable);
+            ((HistoriqueAchatController) loader.getController()).init(listedepenseObservable,this.depenseobservable,this.seuilobservable);
 
             window.show();
         }catch (IOException e){

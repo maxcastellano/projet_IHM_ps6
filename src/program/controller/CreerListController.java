@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.value.ObservableLongValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,10 +49,16 @@ public class CreerListController {
     private ArrayList<Article> articleschoisis = new ArrayList<>();
     private static ObservableList<ListCourse> listeCourseObservableList ;
     private static ObservableList<String> listeDepenseObservableList;
+    private long depensemontant;
+    private long seuilmontant;
+    private ObservableLongValue depenseobservable;
+    private ObservableLongValue seuilobservable;
 
-    public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses, ObservableList<String>listeDepenses){
-            listeDepenseObservableList = listeDepenses;
-            listeCourseObservableList = listCourses;
+    public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses, ObservableList<String>listeDepenses, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
+        this.depenseobservable = depenseobservalbe;
+        this.seuilobservable = seuilobservable;
+        listeDepenseObservableList = listeDepenses;
+        listeCourseObservableList = listCourses;
         for (Article article: listedesarticles){
             String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
             this.listearticles.getItems().add(articleString);
@@ -103,7 +110,7 @@ public class CreerListController {
             window.setTitle("Liste des Courses");
 
             ((ListesCoursesController)loader.getController()).addListeCourse(listCourse);
-            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             window.show();
 
@@ -124,7 +131,7 @@ public class CreerListController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             window.show();
 
