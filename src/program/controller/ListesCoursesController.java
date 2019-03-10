@@ -55,10 +55,11 @@ public class ListesCoursesController {
 
     private ObservableList<Article> articles;
     private static ObservableList<ListCourse> listeCourseObservableList ;
+    private static ObservableList<String> listeDepenseObservableList ;
     private ListCourse currentListeCourse = null;
 
-    public void init(ObservableList<ListCourse> listCourses) {
-
+    public void init(ObservableList<ListCourse> listCourses,ObservableList<String>listeDepenses) {
+        this.listeDepenseObservableList = listeDepenses;
         listeCourseObservableList = listCourses;
         this.tablelistes.setItems(listeCourseObservableList);
         this.nomcolonne.setCellValueFactory(cellData -> cellData.getValue().getStrNom());
@@ -76,12 +77,11 @@ public class ListesCoursesController {
 
         this.articles = ReadArticleJSON.readFromJSON(View.ARTICLEJSON);
 
-        this.detailsbouton.setOnAction(event -> voirDetails());
+        this.detailsbouton.setOnAction(event -> voirDetails(listeDepenseObservableList));
     }
 
        void addListeCourse(ListCourse listCourse) {
             listeCourseObservableList.add(listCourse);
-
     }
 
     private void gotoAccueil() {
@@ -117,7 +117,7 @@ public class ListesCoursesController {
             stage.setScene(creerListeScene);
             stage.setTitle("Creer Liste");
 
-            ((CreerListController)loader.getController()).init(this.articles,listeCourseObservableList);
+            ((CreerListController)loader.getController()).init(this.articles,listeCourseObservableList,listeDepenseObservableList);
 
             stage.show();
 
@@ -126,7 +126,7 @@ public class ListesCoursesController {
         }
     }
 
-    private void voirDetails(){
+    private void voirDetails(ObservableList<String> listeDepenseObservableList){
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/cliquersuruneliste.fxml"));
         currentListeCourse = tablelistes.getSelectionModel().getSelectedItem();
@@ -139,7 +139,7 @@ public class ListesCoursesController {
             window.setTitle("Liste");
 
             ((ListeController) loader.getController()).initListe(currentListeCourse);
-            ((ListeController) loader.getController()).init(listeCourseObservableList);
+            ((ListeController) loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
 
             window.show();
         }catch (IOException e){

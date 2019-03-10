@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +42,7 @@ public class AccueilController {
     private Button profilbouton;
 
     private ObservableList<ListCourse> listCourses;
-
+    private static ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
     public void init(){
         AccueilModel accueilModel = new AccueilModel();
         listeDepense.setItems(accueilModel.getListDepense());
@@ -68,7 +69,7 @@ public class AccueilController {
             window.setScene(coursesScene);
             window.setTitle("Listes Courses");
 
-            ((ListesCoursesController)loader.getController()).init(this.listCourses);
+            ((ListesCoursesController)loader.getController()).init(this.listCourses,listedepenseObservable);
 
             window.show();
 
@@ -111,7 +112,7 @@ public class AccueilController {
             window.setScene(historiquescene);
             window.setTitle("Historique d'achats");
 
-            ((HistoriqueAchatController)loader.getController()).init();
+            ((HistoriqueAchatController)loader.getController()).init(listedepenseObservable);
 
             window.show();
 

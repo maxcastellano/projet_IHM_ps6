@@ -47,8 +47,10 @@ public class CreerListController {
     private ArrayList<Article> articleArrayList = new ArrayList<>();
     private ArrayList<Article> articleschoisis = new ArrayList<>();
     private static ObservableList<ListCourse> listeCourseObservableList ;
+    private static ObservableList<String> listeDepenseObservableList;
 
-    public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses){
+    public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses, ObservableList<String>listeDepenses){
+            listeDepenseObservableList = listeDepenses;
             listeCourseObservableList = listCourses;
         for (Article article: listedesarticles){
             String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
@@ -101,17 +103,13 @@ public class CreerListController {
             window.setTitle("Liste des Courses");
 
             ((ListesCoursesController)loader.getController()).addListeCourse(listCourse);
-            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList);
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
 
             window.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private Text getTotal() {
-        return total;
     }
 
     private void retourListeCourses(){
@@ -126,7 +124,7 @@ public class CreerListController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList);
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList);
 
             window.show();
 

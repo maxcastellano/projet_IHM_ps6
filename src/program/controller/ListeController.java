@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,11 @@ import program.model.Article;
 import program.model.ListCourse;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ListeController {
 
@@ -35,13 +41,17 @@ public class ListeController {
     private ListView<String> articlesliste;
 
     private ListCourse listCoursechoisie;
+    private String date;
+    private String listepaye;
 
     private static ObservableList<ListCourse> listCourseObservableList;
+    private static ObservableList<String>listedepenseObservable;
 
-    public void init(ObservableList<ListCourse> listCourses){
+    public void init(ObservableList<ListCourse> listCourses,ObservableList<String>listedepenseObservable){
+        this.listedepenseObservable = listedepenseObservable;
         listCourseObservableList = listCourses;
         this.retourliste.setOnAction(event -> retourListeCourses());
-        this.payerbouton.setOnAction(event -> payerListeCourse());
+        this.payerbouton.setOnAction(event -> ajouterlistedepense());
     }
 
     public void initListe(ListCourse listCourse){
@@ -66,7 +76,7 @@ public class ListeController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).init(listCourseObservableList);
+            ((ListesCoursesController)loader.getController()).init(listCourseObservableList,listedepenseObservable);
 
             window.show();
 
@@ -76,14 +86,37 @@ public class ListeController {
     }
 
     @FXML
-    private void payerListeCourse(){
-        Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+    private String payerListeCourse(){
+        Alert alert =new Alert(Alert.AlertType.CONFIRMATION,"Pay ? ",ButtonType.YES, ButtonType.NO);
         alert.setTitle("Paiement");
         alert.setContentText("Êtes - vous sûr de vouloir payer cette liste ?");
-        if(alert.getResult() == ButtonType.YES){
-
-        }
         alert.setHeaderText(null);
         alert.showAndWait();
+        if(alert.getResult() == ButtonType.YES){
+            date = LocalDateTime.now().getDayOfMonth()+"/"+LocalDateTime.now().getMonthValue()+"/"+LocalDateTime.now().getYear();
+            listepaye = date + "  " + listCoursechoisie.getNom() + "  " + listCoursechoisie.getPrix()+"€";
+        }
+        return listepaye;
+    }
+
+    private void ajouterlistedepense(){
+        String listeachetee = payerListeCourse();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Historique d'achats.fxml"));
+        listedepenseObservable.add(listeachetee);
+        try {
+            Stage window = (Stage) payerbouton.getScene().getWindow();
+            Parent historiqueparent = loader.load(getClass().getResourceAsStream(View.HISTORIQUE_DACHATS));
+            Scene historiquescene = new Scene(historiqueparent);
+
+            window.setScene(historiquescene);
+            window.setTitle("Liste des Dépenses");
+
+            ((HistoriqueAchatController) loader.getController()).initListsDepenses(listeachetee,listCoursechoisie.getPrix());
+            ((HistoriqueAchatController) loader.getController()).init(listedepenseObservable);
+
+            window.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

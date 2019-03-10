@@ -1,5 +1,7 @@
 package program.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import program.View;
 import program.model.HistoriqueAchats;
+import program.model.ListCourse;
 
 import java.io.IOException;
 
@@ -25,9 +28,12 @@ public class HistoriqueAchatController {
     @FXML
     private Button accueilbouton;
 
-    public void init(){
+    private ObservableList<String> listedepensesObservable = FXCollections.observableArrayList();
+
+    public void init(ObservableList<String>listedepensesObservable){
+        this.listedepensesObservable = listedepensesObservable;
         HistoriqueAchats historiqueAchatsModel = new HistoriqueAchats();
-        listHA.setItems(historiqueAchatsModel.getListAchats());
+        listHA.setItems(listedepensesObservable);
         choiceboxHA.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choiceboxHA.getSelectionModel().select(1);
 
@@ -55,4 +61,7 @@ public class HistoriqueAchatController {
         }
     }
 
+     void initListsDepenses(String listepayee, long prix){
+        listedepensesObservable.add(listepayee);
+    }
 }

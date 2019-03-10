@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import program.controller.AccueilController;
 
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static program.View.START;
@@ -27,6 +28,7 @@ public class Main extends Application {
         primaryStage.setTitle("Accueil");
         //Show the view
         primaryStage.show();
+        System.out.println(LocalDateTime.now());
     }
 
 
