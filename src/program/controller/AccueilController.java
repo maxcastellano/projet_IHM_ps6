@@ -10,11 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import program.ReadListCourseJSON;
-import program.View;
 import program.model.AccueilModel;
 
-import javafx.event.*;
-import program.model.Article;
 import program.model.ListCourse;
 
 
@@ -71,7 +68,7 @@ public class AccueilController {
             window.setScene(coursesScene);
             window.setTitle("Listes Courses");
 
-            ((ListesCoursesController)loader.getController()).init();
+            ((ListesCoursesController)loader.getController()).init(this.listCourses);
 
             window.show();
 

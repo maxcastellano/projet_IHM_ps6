@@ -14,10 +14,12 @@ public class ListCourse {
     private final StringProperty name;
     private ObservableList<Article> listCourse;
     private LongProperty prix;
+    private final String nom;
 
 
     public ListCourse(List<Article> listCourse, String name){
         this.name = new SimpleStringProperty(name);
+        this.nom = name;
         this.listCourse = FXCollections.observableArrayList();
         int prixInter = 0;
         for(Article article : listCourse){
@@ -39,4 +41,11 @@ public class ListCourse {
         return listCourse;
     }
 
+    public String getNom() {
+        return nom;
+    }
+    public StringProperty getStrPrix(){
+        return new SimpleStringProperty(this.prix.getValue().toString() + " €");}
+
+    public StringProperty getStrNom(){return this.name;}
 }

@@ -34,6 +34,7 @@ public class ReadListCourseJSON {
                     long prix = (long) innerObjList.get("prix");
                     listCourseToAdd.add(new Article(nom, prix));
                 }
+
                 listCourse.add(new ListCourse(listCourseToAdd, name));
             }
         }

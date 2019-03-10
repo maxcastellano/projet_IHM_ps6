@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -17,11 +18,15 @@
                   <Insets left="200.0" />
                </VBox.margin>
             </ChoiceBox>
-            <ListView fx:id="listecourses" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <TableView fx:id="tablelistes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+              <columns>
+                <TableColumn fx:id="nomcolonne" prefWidth="285.0" text="Nom" />
+                <TableColumn fx:id="prixcolonne" prefWidth="275.0" text="Prix" />
+              </columns>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="30.0" />
                </VBox.margin>
-            </ListView>
+            </TableView>
          </children>
          <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
@@ -37,6 +42,11 @@
                </VBox.margin>
             </Button>
             <Button fx:id="creerlistebouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Créer Liste">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="detailsbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Voir Détails/Payer">
                <VBox.margin>
                   <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
                </VBox.margin>

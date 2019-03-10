@@ -34,7 +34,6 @@ public class ArticlesController {
 
     private static ObservableList<Article> articleObservableList= FXCollections.observableArrayList();
 
-
     @FXML
     private TableColumn<Article, String> nomcolumn;
 
@@ -44,9 +43,7 @@ public class ArticlesController {
     @FXML
     private TextField recherche;
 
-
-
-    ReadArticleJSON reader;
+    private ReadArticleJSON reader;
 
     private Article currentArticle =null;
 
@@ -123,6 +120,5 @@ public class ArticlesController {
             e.printStackTrace();
         }
     }
-
 
 }

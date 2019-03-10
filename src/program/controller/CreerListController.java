@@ -13,12 +13,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.View;
 import program.model.Article;
+import program.model.ListCourse;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-
-import static program.View.ACCUEIL;
 
 
 public class CreerListController {
@@ -47,9 +45,11 @@ public class CreerListController {
     private long prixtotal;
 
     private ArrayList<Article> articleArrayList = new ArrayList<>();
+    private ArrayList<Article> articleschoisis = new ArrayList<>();
+    private static ObservableList<ListCourse> listeCourseObservableList ;
 
-    public void init (ObservableList<Article>listedesarticles){
-
+    public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses){
+            listeCourseObservableList = listCourses;
         for (Article article: listedesarticles){
             String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
             this.listearticles.getItems().add(articleString);
@@ -80,6 +80,7 @@ public class CreerListController {
             String articleString = article.getNom() + "\t\t" + article.getPrix() + "€";
             for (Object articleobj : listArticles) {
                 if (articleString.equals(String.valueOf(articleobj))) {
+                    this.articleschoisis.add(article);
                     return article.getPrix();
                 }
             }
@@ -88,8 +89,8 @@ public class CreerListController {
     }
 
     private void creerListe(){
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Listes_Courses.fxml"));
+        ListCourse listCourse= new ListCourse(this.articleschoisis,this.saisienom.getText());
 
         try {
             Stage window = (Stage) creerbouton.getScene().getWindow();
@@ -99,8 +100,8 @@ public class CreerListController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).addListeCourse(this.saisienom.getText(),getTotal().getText()+"€");
-            ((ListesCoursesController)loader.getController()).init();
+            ((ListesCoursesController)loader.getController()).addListeCourse(listCourse);
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList);
 
             window.show();
 
@@ -125,7 +126,7 @@ public class CreerListController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).init();
+            ((ListesCoursesController)loader.getController()).init(listeCourseObservableList);
 
             window.show();
 
@@ -133,5 +134,6 @@ public class CreerListController {
             e.printStackTrace();
         }
     }
+
 }
 

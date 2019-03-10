@@ -1,5 +1,6 @@
 package program.controller;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,19 +8,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import program.ReadArticleJSON;
+import program.ReadListCourseJSON;
 import program.View;
 import program.model.Article;
 import program.model.ListCourse;
 
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.Name;
 import static program.View.ACCUEIL;
 import static program.View.CREER_LISTE;
 import static program.View.LISTE_COURSES;
@@ -27,13 +33,16 @@ import static program.View.LISTE_COURSES;
 public class ListesCoursesController {
 
     @FXML
-    private  ListView<String> listecourses;
+    private TableView<ListCourse> tablelistes;
+
+    @FXML
+    private TableColumn<ListCourse, String> nomcolonne;
+
+    @FXML
+    TableColumn<ListCourse, String> prixcolonne;
 
     @FXML
     private ChoiceBox<String> choicebox;
-
-    @FXML
-    private Button retour;
 
     @FXML
     private Button retouraccueil;
@@ -41,11 +50,23 @@ public class ListesCoursesController {
     @FXML
     private Button creerlistebouton;
 
-    private ObservableList<Article> articles;
-    private static ObservableList<String> listCourseObservableList = FXCollections.observableArrayList();
+    @FXML
+    private Button detailsbouton;
 
-    public void init() {
-        listecourses.getItems().addAll(listCourseObservableList);
+    private ObservableList<Article> articles;
+    private static ObservableList<ListCourse> listeCourseObservableList ;
+    private ListCourse currentListeCourse = null;
+
+    public void init(ObservableList<ListCourse> listCourses) {
+
+        listeCourseObservableList = listCourses;
+        this.tablelistes.setItems(listeCourseObservableList);
+        this.nomcolonne.setCellValueFactory(cellData -> cellData.getValue().getStrNom());
+        this.prixcolonne.setCellValueFactory(cellData -> cellData.getValue().getStrPrix());
+
+
+        //listecourses.getItems().addAll(listCourseObservableList);
+        //this.listecourses.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         this.choicebox.getItems().addAll("Toutes(chronologique)", "Favorites");
         this.choicebox.getSelectionModel().select(0);
 
@@ -55,10 +76,12 @@ public class ListesCoursesController {
 
         this.articles = ReadArticleJSON.readFromJSON(View.ARTICLEJSON);
 
+        this.detailsbouton.setOnAction(event -> voirDetails());
     }
 
-    public void addListeCourse(String name, String prix){
-        listCourseObservableList.add(name +"\t" + prix);
+       void addListeCourse(ListCourse listCourse) {
+            listeCourseObservableList.add(listCourse);
+
     }
 
     private void gotoAccueil() {
@@ -94,7 +117,7 @@ public class ListesCoursesController {
             stage.setScene(creerListeScene);
             stage.setTitle("Creer Liste");
 
-            ((CreerListController)loader.getController()).init(this.articles);
+            ((CreerListController)loader.getController()).init(this.articles,listeCourseObservableList);
 
             stage.show();
 
@@ -103,4 +126,24 @@ public class ListesCoursesController {
         }
     }
 
+    private void voirDetails(){
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/cliquersuruneliste.fxml"));
+        currentListeCourse = tablelistes.getSelectionModel().getSelectedItem();
+        try {
+            Stage window = (Stage) detailsbouton.getScene().getWindow();
+            Parent detailsListeparent = loader.load(getClass().getResourceAsStream(View.VIEWLISTE));
+            Scene detailsListescene = new Scene(detailsListeparent);
+
+            window.setScene(detailsListescene);
+            window.setTitle("Liste");
+
+            ((ListeController) loader.getController()).initListe(currentListeCourse);
+            ((ListeController) loader.getController()).init(listeCourseObservableList);
+
+            window.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }
