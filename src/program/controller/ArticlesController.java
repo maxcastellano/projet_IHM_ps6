@@ -74,7 +74,7 @@ public class ArticlesController {
     public void afficher(){
         list.setOnMouseClicked(e -> {
                     try {
-                        currentArticle = list.getSelectionModel().getSelectedItem(); //L'incident sur lequel on a cliqué
+                        currentArticle = list.getSelectionModel().getSelectedItem();
                         if(currentArticle!= null && e.getClickCount() == 2) {
 
                             FXMLLoader loader = new FXMLLoader();

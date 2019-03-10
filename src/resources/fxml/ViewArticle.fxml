@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="311.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.ViewArticle">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="311.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.ViewArticle">
    <children>
       <Label layoutX="110.0" layoutY="14.0" text="Nom de l'article :" />
       <Label layoutX="110.0" layoutY="71.0" text="Prix de l'article :" />
@@ -14,6 +14,6 @@
       <Label fx:id="nomarticle" layoutX="141.0" layoutY="41.0" text="Label" />
       <Label fx:id="prixarticle" layoutX="142.0" layoutY="97.0" text="Label" />
       <Label fx:id="categoriearticle" layoutX="142.0" layoutY="157.0" text="Label" />
-      <Button fx:id="okbutton" layoutX="265.0" layoutY="190.0" mnemonicParsing="false"  text="Ok" />
+      <Button fx:id="okbutton" layoutX="265.0" layoutY="190.0" mnemonicParsing="false" text="Ok" />
    </children>
 </AnchorPane>

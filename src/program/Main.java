@@ -14,6 +14,7 @@ import program.controller.AccueilController;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+import static program.View.CSS;
 import static program.View.START;
 
 public class Main extends Application {
@@ -31,6 +32,7 @@ public class Main extends Application {
         //Attach XML File
         Parent root = loader.load(getClass().getResourceAsStream(START));
         //Attach css
+        root.getStylesheets().add(CSS);
         ((AccueilController)loader.getController()).init(listedepenseObservable, depenseobservalbe,seuilobservable);
         //Create the view
         primaryStage.setScene(new Scene(root));
