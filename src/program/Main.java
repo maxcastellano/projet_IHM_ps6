@@ -1,6 +1,8 @@
 package program;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,10 +21,11 @@ public class Main extends Application {
         //primaryStage.setTitle("Hello World");
         //primaryStage.setScene(new Scene(root, 300, 275));
         FXMLLoader loader = new FXMLLoader();
+        ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
         //Attach XML File
         Parent root = loader.load(getClass().getResourceAsStream(START));
         //Attach css
-        ((AccueilController)loader.getController()).init();
+        ((AccueilController)loader.getController()).init(listedepenseObservable);
         //Create the view
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Accueil");

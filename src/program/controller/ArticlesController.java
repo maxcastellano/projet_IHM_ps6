@@ -46,8 +46,10 @@ public class ArticlesController {
     private ReadArticleJSON reader;
 
     private Article currentArticle =null;
+    private ObservableList<String> listedepensesObservable;
 
-    public void init(){
+    public void init(ObservableList<String> listedepenses){
+        listedepensesObservable = listedepenses;
         reader = new ReadArticleJSON();
         articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
 
@@ -112,7 +114,7 @@ public class ArticlesController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init();
+            ((AccueilController)loader.getController()).init(listedepensesObservable);
 
             window.show();
 

@@ -43,9 +43,10 @@ public class AccueilController {
 
     private ObservableList<ListCourse> listCourses;
     private static ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
-    public void init(){
+    public void init(ObservableList<String> listedepenseObservableListe){
+        listedepenseObservable = listedepenseObservableListe;
         AccueilModel accueilModel = new AccueilModel();
-        listeDepense.setItems(accueilModel.getListDepense());
+        listeDepense.setItems(listedepenseObservable);
         choicebox.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choicebox.getSelectionModel().select(1);
         this.listCourses = ReadListCourseJSON.readFromJSON(LISTEJSON);
@@ -90,7 +91,7 @@ public class AccueilController {
             window.setScene(profilscene);
             window.setTitle("Profil");
 
-            ((ProfilController)loader.getController()).init();
+            ((ProfilController)loader.getController()).init(listedepenseObservable);
 
             window.show();
 
@@ -132,7 +133,7 @@ public class AccueilController {
             window.setScene(scene);
             window.setTitle("Articles");
 
-            ((ArticlesController)loader.getController()).init();
+            ((ArticlesController)loader.getController()).init(listedepenseObservable);
 
             window.show();
 

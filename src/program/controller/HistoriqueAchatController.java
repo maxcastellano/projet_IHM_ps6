@@ -32,7 +32,6 @@ public class HistoriqueAchatController {
 
     public void init(ObservableList<String>listedepensesObservable){
         this.listedepensesObservable = listedepensesObservable;
-        HistoriqueAchats historiqueAchatsModel = new HistoriqueAchats();
         listHA.setItems(listedepensesObservable);
         choiceboxHA.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choiceboxHA.getSelectionModel().select(1);
@@ -52,7 +51,7 @@ public class HistoriqueAchatController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init();
+            ((AccueilController)loader.getController()).init(listedepensesObservable);
 
             window.show();
 

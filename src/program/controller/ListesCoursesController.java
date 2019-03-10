@@ -96,7 +96,7 @@ public class ListesCoursesController {
             window.setScene(accueilscene);
             window.setTitle("Accueil");
 
-            ((AccueilController)loader.getController()).init();
+            ((AccueilController)loader.getController()).init(listeDepenseObservableList);
 
             window.show();
 
