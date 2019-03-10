@@ -14,7 +14,8 @@ public class View {
     public static final String VIEWARTICLE = "../../resources/fxml/ViewArticle.fxml";
     public static final String VIEWLISTE = "../../resources/fxml/cliquersuruneliste.fxml";
     public static final String CSS = "resources/css/accueil.css";
-
+    public  static  final String LOGO = "resources/image/logo_polytech.png";
+    public static final String CREER_ARTICLE = "../../resources/fxml/Create_Article.fxml";
 
 
 }

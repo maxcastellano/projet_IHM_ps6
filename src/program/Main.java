@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import program.controller.AccueilController;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static program.View.CSS;
+import static program.View.LOGO;
 import static program.View.START;
 
 public class Main extends Application {
@@ -37,6 +39,7 @@ public class Main extends Application {
         //Create the view
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Accueil");
+       // primaryStage.getIcons().setAll(new Image(getClass().getResource(LOGO).toExternalForm()));
         //Show the view
         primaryStage.show();
     }

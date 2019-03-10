@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import program.Catégorie;
 import program.ReadArticleJSON;
 import program.View;
+import program.WriteArticleJSON;
 import program.model.Article;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static program.View.ACCUEIL;
+import static program.View.CSS;
 import static program.View.VIEWARTICLE;
 
 public class ArticlesController {
@@ -29,6 +31,9 @@ public class ArticlesController {
 
     @FXML
     private Button buttonAccueil;
+
+    @FXML
+    private Button buttonAdd;
 
     @FXML
     private TableView<Article> list;
@@ -69,7 +74,11 @@ public class ArticlesController {
         comboBox.getSelectionModel().select(0);
 
         buttonAccueil.setOnAction(event -> gotoAccueil());
+
+        buttonAdd.setOnAction(event -> this.createArticle());
     }
+
+
 
     public void afficher(){
         list.setOnMouseClicked(e -> {
@@ -83,9 +92,8 @@ public class ArticlesController {
                             Parent parent;
                             try {
 
-                                //ViewArticle viewArticle = new ViewArticle(currentArticle);
-                                //loader.setController(viewArticle);
                                 parent = loader.load(getClass().getResourceAsStream(View.VIEWARTICLE));
+                                parent.getStylesheets().add(CSS);
 
                                 ((ViewArticle) loader.getController()).display(currentArticle);
 
@@ -94,7 +102,9 @@ public class ArticlesController {
                                 window = new Stage();
                                 window.setScene(scene);
                                 window.setTitle("Article");
-                                window.show();
+                                window.showAndWait();
+                                articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
+                                list.setItems(articleObservableList);
 
                             } catch (IOException e2) {
                                 e2.printStackTrace();
@@ -127,6 +137,33 @@ public class ArticlesController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void createArticle(){
+        FXMLLoader loader = new FXMLLoader();
+
+        Stage window;
+        Parent parent;
+        try {
+
+            parent = loader.load(getClass().getResourceAsStream(View.CREER_ARTICLE));
+            parent.getStylesheets().add(CSS);
+
+            ((CreateArticle) loader.getController()).init();
+
+            Scene scene = new Scene(parent);
+
+            window = new Stage();
+            window.setScene(scene);
+            window.setTitle("New Article");
+            window.showAndWait();
+            articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
+            list.setItems(articleObservableList);
+
+
+        } catch (IOException e2) {
+            e2.printStackTrace();
         }
     }
 
