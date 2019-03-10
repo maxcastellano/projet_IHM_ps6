@@ -21,6 +21,10 @@
 
 }
 
+.button:hover{
+    -fx-background-color: blue;
+}
+
 .label
 {
     -fx-font-family: "arial";

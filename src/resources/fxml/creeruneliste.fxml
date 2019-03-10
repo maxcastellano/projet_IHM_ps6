@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.CreerListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.CreerListController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -78,7 +78,7 @@
                <children>
                   <Button fx:id="ajouterbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="350.0" right="20.0" top="10.0" />
+                        <Insets bottom="10.0" left="350.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="creerbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Créer">
