@@ -27,7 +27,7 @@ public class Main extends Application {
         ObservableLongValue depenseobservalbe = new SimpleLongProperty();
          ((SimpleLongProperty) depenseobservalbe).set(0);
         ObservableLongValue seuilobservable = new SimpleLongProperty();
-        ((SimpleLongProperty) seuilobservable).set(0);
+        ((SimpleLongProperty) seuilobservable).set(200);
         //Attach XML File
         Parent root = loader.load(getClass().getResourceAsStream(START));
         //Attach css

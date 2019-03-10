@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -70,10 +71,18 @@ public class HistoriqueAchatController {
      void initListsDepenses(String listepayee){
         listedepensesObservable.add(listepayee);
     }
-    void totaldepense(long prix,ObservableLongValue depenseobservable){
+    void totaldepense(long prix,ObservableLongValue depenseobservable,ObservableLongValue seuilobservable){
          long total = depenseobservable.get();
+         long seuil = seuilobservable.get();
          total+=prix;
         ((SimpleLongProperty) depenseobservable).set(total);
+        if(total > seuil){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Vous avez dépassé votre seuil budgétaire de"+ (total - seuil));
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
     }
 
 }

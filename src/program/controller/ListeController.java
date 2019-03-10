@@ -119,7 +119,7 @@ public class ListeController {
             window.setTitle("Liste des Dépenses");
 
             ((HistoriqueAchatController) loader.getController()).initListsDepenses(listeachetee);
-            ((HistoriqueAchatController)loader.getController()).totaldepense(listCoursechoisie.getPrix(),this.depenseobservable);
+            ((HistoriqueAchatController)loader.getController()).totaldepense(listCoursechoisie.getPrix(),this.depenseobservable,this.seuilobservable);
             ((HistoriqueAchatController) loader.getController()).init(listedepenseObservable,this.depenseobservable,this.seuilobservable);
 
             window.show();
