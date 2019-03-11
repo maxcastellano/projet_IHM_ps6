@@ -67,7 +67,7 @@ public class CreerListController {
         listeDepenseObservableList = listeDepenses;
         listeCourseObservableList = listCourses;
         for (Article article: listedesarticles){
-            String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
+            String articleString = article.getNom() + "\t" + article.getPrix()+"€";
             this.listearticles.getItems().add(articleString);
             this.articleArrayList.addAll(listedesarticles);
         }
@@ -171,7 +171,7 @@ public class CreerListController {
             window.showAndWait();
              ObservableList<Article> listeCourseObservableListtmp  = reader.readFromJSON(View.ARTICLEJSON);
             for (Article article: listeCourseObservableListtmp){
-                String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
+                String articleString = article.getNom() + "\t" + article.getPrix()+"€";
                 this.listearticles.getItems().add(articleString);
                 this.articleArrayList.addAll(listeCourseObservableListtmp);
             }

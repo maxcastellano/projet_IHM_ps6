@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -49,6 +51,9 @@ public class AccueilController {
     @FXML
     private Text seuil;
 
+    @FXML
+    private LineChart<?, ?> graph;
+
     private ObservableList<ListCourse> listCourses;
     private  ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
     private  long depensemontant;
@@ -74,6 +79,15 @@ public class AccueilController {
         profilbouton.setOnAction(event -> gotoprofil());
         historiquebouton.setOnAction(event -> gothistorique());
         articlesbouton.setOnAction(event -> gotoarticle());
+/*
+        XYChart.Series series = new XYChart.Series();
+        int i=0;
+        for (ListCourse listCourse: this.listeDepense){
+            series.getData().add(new XYChart.Data(String.valueOf(listCourse.getPrix()),i));
+            i++;
+        }
+
+        this.graph.getData().addAll(series);*/
         
     }
 
