@@ -60,6 +60,11 @@
                   </ListView>
                </children>
             </HBox>
+            <Button fx:id="addArticleButton" mnemonicParsing="false" text="Ajouter article">
+               <VBox.margin>
+                  <Insets left="130.0" />
+               </VBox.margin>
+            </Button>
             <VBox>
                <children>
                   <Label text="Total">

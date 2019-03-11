@@ -12,6 +12,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import program.ReadArticleJSON;
 import program.View;
 import program.model.Article;
 import program.model.ListCourse;
@@ -19,11 +20,16 @@ import program.model.ListCourse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static program.View.CSS;
+
 
 public class CreerListController {
 
     @FXML
     private Button ajouterbouton;
+
+    @FXML
+    private  Button addArticleButton;
 
     @FXML
     private Button annulerbouton;
@@ -53,6 +59,7 @@ public class CreerListController {
     private long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
+    private ReadArticleJSON reader;
 
     public void init (ObservableList<Article>listedesarticles, ObservableList<ListCourse>listCourses, ObservableList<String>listeDepenses, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
         this.depenseobservable = depenseobservalbe;
@@ -70,6 +77,10 @@ public class CreerListController {
         this.creerbouton.setOnAction(event -> creerListe());
         this.saisienom.getCharacters();
         this.annulerbouton.setOnAction(event -> retourListeCourses());
+        this.addArticleButton.setOnAction(event -> this.createArticle());
+
+
+        reader = new ReadArticleJSON();
     }
 
     private void addTo() {
@@ -137,6 +148,37 @@ public class CreerListController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void createArticle(){
+        FXMLLoader loader = new FXMLLoader();
+
+        Stage window;
+        Parent parent;
+        try {
+
+            parent = loader.load(getClass().getResourceAsStream(View.CREER_ARTICLE));
+            parent.getStylesheets().add(CSS);
+
+            ((CreateArticle) loader.getController()).init();
+
+            Scene scene = new Scene(parent);
+
+            window = new Stage();
+            window.setScene(scene);
+            window.setTitle("New Article");
+            window.showAndWait();
+             ObservableList<Article> listeCourseObservableListtmp  = reader.readFromJSON(View.ARTICLEJSON);
+            for (Article article: listeCourseObservableListtmp){
+                String articleString = article.getNom() + "\t\t" + article.getPrix()+"€";
+                this.listearticles.getItems().add(articleString);
+                this.articleArrayList.addAll(listeCourseObservableListtmp);
+            }
+
+
+        } catch (IOException e2) {
+            e2.printStackTrace();
         }
     }
 
