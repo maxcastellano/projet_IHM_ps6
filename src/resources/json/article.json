@@ -1,1 +1,1 @@
-{"Articles":[{"prix":1,"nom":"evian"},{"prix":5,"nom":"poulet"},{"prix":10,"nom":"saumon"},{"prix":4,"nom":"harricots verts"},{"prix":3,"nom":"pomme de terre"},{"prix":45,"nom":"test"}]}
+{"Articles":[{"prix":1.0,"catégorie":"Autres","nom":"evian"},{"prix":5.0,"catégorie":"Plat","nom":"poulet"},{"prix":10.0,"catégorie":"Plat","nom":"saumon"},{"prix":4.0,"catégorie":"Plat","nom":"harricots verts"},{"prix":3.0,"catégorie":"Plat","nom":"pomme de terre"},{"prix":2.4,"catégorie":"Entrée","nom":"Salade de carotte"}]}

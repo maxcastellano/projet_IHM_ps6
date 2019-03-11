@@ -1,17 +1,20 @@
 package program.model;
 
 import javafx.beans.property.*;
+import program.Catégorie;
 
 public class Article {
-    private LongProperty prix;
+    private FloatProperty prix;
     private  StringProperty nom;
+    private Catégorie catégorie;
 
-    public Article(String nom, long prix){
-        this.prix = new SimpleLongProperty(prix);
+    public Article(String nom, Float prix, Catégorie catégorie){
+        this.prix = new SimpleFloatProperty(prix);
         this.nom = new SimpleStringProperty(nom);
+        this.catégorie = catégorie;
     }
 
-    public long getPrix() {
+    public Float getPrix() {
         return prix.get();
     }
 
@@ -19,9 +22,13 @@ public class Article {
         return nom.get();
     }
 
-    public void setPrix(Long prix){ this.prix = new SimpleLongProperty(prix) ;}
+    public Catégorie getCatégorie(){return catégorie;}
+
+    public void setPrix(Float prix){ this.prix = new SimpleFloatProperty(prix) ;}
 
     public void setNom(String nom){ this.nom = new SimpleStringProperty(nom);}
+
+    public  void setCatégorie(Catégorie catégorie){ this.catégorie = catégorie;}
 
     public StringProperty getStrPrix(){
         return new SimpleStringProperty(this.prix.getValue().toString() + " €");}

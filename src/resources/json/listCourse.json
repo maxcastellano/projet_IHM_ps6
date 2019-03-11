@@ -5,23 +5,28 @@
       "listCourse": [
         {
           "nom": "evian",
-          "prix": 1
+          "prix": 1.0,
+          "catégorie": "Autres"
         },
         {
           "nom": "poulet",
-          "prix": 5
+          "prix": 5.0,
+          "catégorie": "Plat"
         },
         {
           "nom": "saumon",
-          "prix": 10
+          "prix": 10.0,
+          "catégorie": "Plat"
         },
         {
           "nom": "harricots verts",
-          "prix": 4
+          "prix": 4.0,
+          "catégorie": "Plat"
         },
         {
           "nom": "pomme de terre",
-          "prix": 3
+          "prix": 3.0,
+          "catégorie": "Plat"
         }
       ]
     },
@@ -30,15 +35,18 @@
       "listCourse": [
         {
           "nom": "evian",
-          "prix": 1
+          "prix": 1.0,
+          "catégorie": "Autres"
         },
         {
           "nom": "evian",
-          "prix": 1
+          "prix": 1.0,
+          "catégorie": "Autres"
         },
         {
           "nom": "poulet",
-          "prix": 5
+          "prix": 5.0,
+          "catégorie": "Plat"
         }
       ]
     }

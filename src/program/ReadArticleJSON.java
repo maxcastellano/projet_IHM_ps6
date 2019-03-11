@@ -23,8 +23,12 @@ public class ReadArticleJSON {
             for(Object o : lang){
                 JSONObject innerObj = (JSONObject) o;
                 String nom = (String) innerObj.get("nom");
-                long prix = (long) innerObj.get("prix");
-                listArticle.add(new Article(nom, prix));
+                Double prix2 = (Double) innerObj.get("prix");
+                Float prix = Float.parseFloat(String.valueOf(prix2));
+
+                String cat = (String)innerObj.get("catégorie");
+                Catégorie catégorie = Catégorie.valueOf(cat);
+                listArticle.add(new Article(nom, prix, catégorie));
             }
         }
         catch (Exception e){

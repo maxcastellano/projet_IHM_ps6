@@ -25,8 +25,9 @@ public class WriteArticleJSON {
 	public void addArticle(Article article){
 		JSONObject jsonArticle = new JSONObject();
 
-		jsonArticle.put("nom", article.getNom());
+		jsonArticle.put("catégorie", article.getCatégorie().toSTring());
 		jsonArticle.put("prix", article.getPrix());
+		jsonArticle.put("nom", article.getNom());
 
 		JSONArray array= (JSONArray) data.get("Articles");
 

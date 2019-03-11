@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.CreerListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.CreerListController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -29,7 +29,7 @@
                   <Insets right="100.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Insérer un nom ">
+            <Label text="Nom">
                <GridPane.margin>
                   <Insets left="190.0" />
                </GridPane.margin>

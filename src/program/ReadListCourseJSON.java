@@ -30,9 +30,17 @@ public class ReadListCourseJSON {
                 JSONArray listCourseRead = (JSONArray) innerObj.get("listCourse");
                 for(Object oList : listCourseRead){
                     JSONObject innerObjList = (JSONObject) oList;
+
+
                     String nom = (String) innerObjList.get("nom");
-                    long prix = (long) innerObjList.get("prix");
-                    listCourseToAdd.add(new Article(nom, prix));
+
+                   Double prix2 = (Double) innerObjList.get("prix");
+                    Float prix = Float.parseFloat(String.valueOf(prix2));
+
+                    String cat = (String) innerObjList.get("catégorie");
+
+                    Catégorie catégorie = Catégorie.valueOf(cat);
+                    listCourseToAdd.add(new Article(nom, prix,catégorie));
                 }
 
                 listCourse.add(new ListCourse(listCourseToAdd, name));

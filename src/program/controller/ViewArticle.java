@@ -48,12 +48,11 @@ public class ViewArticle {
     public void display(Article article){
         this.currentarticle = article;
 
-        this.categorie.setVisible(false);
-        this.categoriearticle.setVisible(false);
+
 
         this.nomarticle.setText(this.currentarticle.getNom());
         this.prixarticle.setText(this.currentarticle.getStrPrix().getValue());
-
+        this.categoriearticle.setText(this.currentarticle.getCatégorie().toSTring());
         this.reader = new ReadArticleJSON();
         articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
         this.writer = new WriteArticleJSON();
@@ -73,7 +72,7 @@ public class ViewArticle {
 
         writer.clear();
         for(Article article: articleObservableList) {
-            if(article.getNom().equals(currentarticle.getNom()) && article.getPrix() == currentarticle.getPrix()){
+            if(article.getNom().equals(currentarticle.getNom()) && article.getPrix().equals(currentarticle.getPrix())){
                     /** DO NOTHING**/
             }else{
                 this.writer.addArticle(article);

@@ -67,6 +67,7 @@ public class AccueilController {
         listeDepense.setItems(listedepenseObservable);
         choicebox.getItems().addAll("Annuel","Mensuel" ,"Hebdomadaire");
         choicebox.getSelectionModel().select(1);
+
         this.listCourses = ReadListCourseJSON.readFromJSON(LISTEJSON);
 
         listedecoursesbouton.setOnAction(event -> gotolistescourses());

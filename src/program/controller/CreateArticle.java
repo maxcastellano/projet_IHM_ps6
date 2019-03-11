@@ -44,8 +44,8 @@ public class CreateArticle {
 
     public void init(){
         this.categori.getItems().setAll(Catégorie.values());
-        categori.getSelectionModel().select(0);
-        this.article = new Article(null,0);
+        categori.getSelectionModel().select(4);
+        this.article = new Article(null,Float.parseFloat("0"), Catégorie.Autres);
         this.reader = new ReadArticleJSON();
         articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
         this.writer = new WriteArticleJSON();
@@ -63,7 +63,8 @@ public class CreateArticle {
             window.close();
         }else{
             this.article.setNom(nom.getText());
-            this.article.setPrix(new Long(prix.getText()));
+            this.article.setPrix(Float.parseFloat(prix.getText()));
+            this.article.setCatégorie(categori.getValue());
             articleObservableList.add(this.article);
             this.writer.clear();
             for(Article article: articleObservableList) {

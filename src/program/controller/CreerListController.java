@@ -82,7 +82,7 @@ public class CreerListController {
         }
 
 
-    private long getPrix (){
+    private Float getPrix (){
 
         ObservableList listArticles = listearticles.getSelectionModel().getSelectedItems();
         for (Article article : articleArrayList) {
@@ -94,7 +94,7 @@ public class CreerListController {
                 }
             }
         }
-        return 0;
+        return Float.parseFloat("0");
     }
 
     private void creerListe(){
