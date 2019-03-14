@@ -1,12 +1,11 @@
-package program;
+package program.ReadorWriteJSONFile;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import program.model.Depense;
 
 import java.io.FileWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 public class WriteListeDepenseJSON {
 

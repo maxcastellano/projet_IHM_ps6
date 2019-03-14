@@ -1,7 +1,7 @@
 package program.controller;
 
-import program.ReadListeDepensesJSON;
-import program.WriteListeDepenseJSON;
+import program.ReadorWriteJSONFile.ReadListeDepensesJSON;
+import program.ReadorWriteJSONFile.WriteListeDepenseJSON;
 import javafx.beans.value.ObservableLongValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

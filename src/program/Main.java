@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import program.ReadorWriteJSONFile.ReadListeDepensesJSON;
+import program.ReadorWriteJSONFile.ReadMontantDepenseJSON;
 import program.controller.AccueilController;
 import program.model.Depense;
 
@@ -30,8 +32,7 @@ public class Main extends Application {
         for (Depense depense: depenseListe) {
             listedepenseObservable.add(depense.getDate() + "  " +depense.getNom() + "  " + depense.getPrix()+"€" );
         }
-        ObservableLongValue depenseobservalbe = new SimpleLongProperty();
-         ((SimpleLongProperty) depenseobservalbe).set(0);
+        ObservableLongValue depenseobservalbe = ReadMontantDepenseJSON.ReadMontantDepenseJSON("src/resources/json/montantdepense.json");
         ObservableLongValue seuilobservable = new SimpleLongProperty();
         ((SimpleLongProperty) seuilobservable).set(200);
         //Attach XML File

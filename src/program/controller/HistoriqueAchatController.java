@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.ReadorWriteJSONFile.ReadMontantDepenseJSON;
+import program.ReadorWriteJSONFile.WriteMontantDepenseJSON;
 import program.View;
 import program.model.HistoriqueAchats;
 import program.model.ListCourse;
@@ -34,6 +36,7 @@ public class HistoriqueAchatController {
     private ObservableList<String> listedepensesObservable = FXCollections.observableArrayList();
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
+
 
      void init(ObservableList<String>listedepensesObservable, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
         this.depenseobservable = depenseobservalbe;
@@ -69,10 +72,12 @@ public class HistoriqueAchatController {
      void initListsDepenses(String listepayee){
         listedepensesObservable.add(listepayee);
     }
+
     void totaldepense(long prix,ObservableLongValue depenseobservable,ObservableLongValue seuilobservable){
          long total = depenseobservable.get();
          long seuil = seuilobservable.get();
          total+=prix;
+        WriteMontantDepenseJSON writeMontantDepenseJSON = new WriteMontantDepenseJSON(total);
         ((SimpleLongProperty) depenseobservable).set(total);
         if(total > seuil && seuil > 0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
