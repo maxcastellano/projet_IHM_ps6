@@ -32,8 +32,6 @@ public class HistoriqueAchatController {
     private Button accueilbouton;
 
     private ObservableList<String> listedepensesObservable = FXCollections.observableArrayList();
-    private static long depensemontant;
-    private static long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
 
@@ -76,10 +74,10 @@ public class HistoriqueAchatController {
          long seuil = seuilobservable.get();
          total+=prix;
         ((SimpleLongProperty) depenseobservable).set(total);
-        if(total > seuil){
+        if(total > seuil && seuil > 0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
-            alert.setContentText("Vous avez dépassé votre seuil budgétaire de"+ (total - seuil));
+            alert.setContentText("Vous avez dépassé votre seuil budgétaire de "+ (total - seuil)+"€");
             alert.setHeaderText(null);
             alert.showAndWait();
         }

@@ -12,6 +12,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadListCourseJSON;
@@ -56,8 +57,6 @@ public class AccueilController {
 
     private ObservableList<ListCourse> listCourses;
     private  ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
-    private  long depensemontant;
-    private static long seuilmontant;
     private  ObservableLongValue depenseobservable;
     private  ObservableLongValue seuilobservable;
 
@@ -66,6 +65,8 @@ public class AccueilController {
         this.depenseobservable = depenseobservalbe;
         this.seuilobservable = seuilobservable;
         this.depense.setText(this.depenseobservable.get()+"€");
+        this.depense.setFill(Color.rgb(0,255,0,1));
+        if(this.depenseobservable.longValue() > this.seuilobservable.longValue()){this.depense.setFill(Color.rgb(255, 0, 0, 1));}
         this.seuil.setText(this.seuilobservable.get()+"€");
 
         listedepenseObservable = listedepenseObservableListe;
