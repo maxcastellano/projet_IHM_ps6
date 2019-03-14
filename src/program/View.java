@@ -16,6 +16,5 @@ public class View {
     public static final String CSS = "resources/css/accueil.css";
     public  static  final String LOGO = "resources/image/logo_polytech.png";
     public static final String CREER_ARTICLE = "../../resources/fxml/Create_Article.fxml";
-
-
+    public static final String LISTE_DEPENSES = "src/resources/json/listeDepenses.json";
 }

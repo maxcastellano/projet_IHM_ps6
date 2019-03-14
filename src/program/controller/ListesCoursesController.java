@@ -58,8 +58,6 @@ public class ListesCoursesController {
     private static ObservableList<ListCourse> listeCourseObservableList ;
     private static ObservableList<String> listeDepenseObservableList ;
     private ListCourse currentListeCourse = null;
-    private long depensemontant;
-    private long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
 

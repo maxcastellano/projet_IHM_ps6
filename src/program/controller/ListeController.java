@@ -1,7 +1,8 @@
 package program.controller;
 
+import program.ReadListeDepensesJSON;
+import program.WriteListeDepenseJSON;
 import javafx.beans.value.ObservableLongValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +16,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.View;
 import program.model.Article;
+import program.model.Depense;
 import program.model.ListCourse;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class ListeController {
 
@@ -43,12 +41,14 @@ public class ListeController {
 
     private ListCourse listCoursechoisie;
     private String date;
-    private String listepaye;
+    private Depense listepayee;
 
     private static ObservableList<ListCourse> listCourseObservableList;
     private static ObservableList<String>listedepenseObservable;
+    private static ObservableList<Depense> listeDepense;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
+    private WriteListeDepenseJSON writeListeDepenseJSON;
 
     public void init(ObservableList<ListCourse> listCourses, ObservableList<String>listedepenseObservable, ObservableLongValue depenseobservalbe,ObservableLongValue seuilobservable){
         this.depenseobservable = depenseobservalbe;
@@ -57,6 +57,8 @@ public class ListeController {
         listCourseObservableList = listCourses;
         this.retourliste.setOnAction(event -> retourListeCourses());
         this.payerbouton.setOnAction(event -> ajouterlistedepense());
+        listeDepense = ReadListeDepensesJSON.readFromJSON(View.LISTE_DEPENSES);
+        this.writeListeDepenseJSON = new WriteListeDepenseJSON();
     }
 
     public void initListe(ListCourse listCourse){
@@ -91,7 +93,7 @@ public class ListeController {
     }
 
     @FXML
-    private String payerListeCourse(){
+    private Depense payerListeCourse(){
         Alert alert =new Alert(Alert.AlertType.CONFIRMATION,"Pay ? ",ButtonType.YES, ButtonType.NO);
         alert.setTitle("Paiement");
         alert.setContentText("Êtes - vous sûr de vouloir payer cette liste ?");
@@ -99,13 +101,20 @@ public class ListeController {
         alert.showAndWait();
         if(alert.getResult() == ButtonType.YES){
             date = LocalDateTime.now().getDayOfMonth()+"/"+LocalDateTime.now().getMonthValue()+"/"+LocalDateTime.now().getYear();
-            listepaye = date + "  " + listCoursechoisie.getNom() + "  " + listCoursechoisie.getPrix()+"€";
+            this.listepayee = new Depense(listCoursechoisie.getNom(),date,listCoursechoisie.getPrix());
         }
-        return listepaye;
+        return listepayee;
     }
 
     private void ajouterlistedepense(){
-        String listeachetee = payerListeCourse();
+        Depense depense = payerListeCourse();
+        listeDepense.add(depense);
+        this.writeListeDepenseJSON.clear();
+        for(Depense elementdepense: listeDepense) {
+            this.writeListeDepenseJSON.addDepense(elementdepense);
+        }
+        this.writeListeDepenseJSON.writeFile();
+        String listeachetee = depense.getDate() + "  " + depense.getNom() + "  " + depense.getPrix()+"€" ;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Historique d'achats.fxml"));
         listedepenseObservable.add(0,listeachetee);
         try {
