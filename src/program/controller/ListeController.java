@@ -47,8 +47,6 @@ public class ListeController {
 
     private static ObservableList<ListCourse> listCourseObservableList;
     private static ObservableList<String>listedepenseObservable;
-    private long depensemontant;
-    private long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
 
@@ -109,7 +107,7 @@ public class ListeController {
     private void ajouterlistedepense(){
         String listeachetee = payerListeCourse();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Historique d'achats.fxml"));
-        listedepenseObservable.add(listeachetee);
+        listedepenseObservable.add(0,listeachetee);
         try {
             Stage window = (Stage) payerbouton.getScene().getWindow();
             Parent historiqueparent = loader.load(getClass().getResourceAsStream(View.HISTORIQUE_DACHATS));
