@@ -6,7 +6,7 @@ public class Depense {
     private String nom;
     private long prix;
 
-    public  Depense (String nom, String date, long prix){
+    public  Depense (String date, String nom, long prix){
 
             this.nom = nom;
             this.date = date;

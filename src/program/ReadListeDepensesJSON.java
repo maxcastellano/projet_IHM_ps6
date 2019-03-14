@@ -26,10 +26,10 @@ public class ReadListeDepensesJSON {
 
                 JSONObject innerObj = (JSONObject) o;
                 String date = (String) innerObj.get("date");
-                String name = (String) innerObj.get("nom");
+                String nom = (String) innerObj.get("nom");
                 long prix = (long) innerObj.get("prix");
 
-                listeDepenses.add(new Depense(date,name,prix));
+                listeDepenses.add(new Depense(date,nom,prix));
 
             }
         }

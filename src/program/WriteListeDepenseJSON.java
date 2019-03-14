@@ -24,11 +24,12 @@ public class WriteListeDepenseJSON {
      */
     public void addDepense(Depense depense){
 
-        Map map = new LinkedHashMap();
-        map.put("date",depense.getDate());
-        map.put("nom", depense.getNom());
-        map.put("prix", depense.getPrix());
-        JSONObject jsonDepense = new JSONObject(map);
+        JSONObject jsonDepense = new JSONObject();
+
+        jsonDepense.put("date",depense.getDate());
+        jsonDepense.put("nom", depense.getNom());
+        jsonDepense.put("prix", depense.getPrix());
+
 
         JSONArray array= (JSONArray) data.get("Liste des Dépenses");
 

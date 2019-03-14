@@ -100,15 +100,15 @@ public class ListeController {
         alert.setHeaderText(null);
         alert.showAndWait();
         if(alert.getResult() == ButtonType.YES){
-            date = LocalDateTime.now().getDayOfMonth()+"/"+LocalDateTime.now().getMonthValue()+"/"+LocalDateTime.now().getYear();
-            this.listepayee = new Depense(listCoursechoisie.getNom(),date,listCoursechoisie.getPrix());
+            date = LocalDateTime.now().getDayOfMonth()+"-"+LocalDateTime.now().getMonthValue()+"-"+LocalDateTime.now().getYear();
+            this.listepayee = new Depense(date,listCoursechoisie.getNom(),listCoursechoisie.getPrix());
         }
         return listepayee;
     }
 
     private void ajouterlistedepense(){
         Depense depense = payerListeCourse();
-        listeDepense.add(depense);
+        listeDepense.add(0,depense);
         this.writeListeDepenseJSON.clear();
         for(Depense elementdepense: listeDepense) {
             this.writeListeDepenseJSON.addDepense(elementdepense);
