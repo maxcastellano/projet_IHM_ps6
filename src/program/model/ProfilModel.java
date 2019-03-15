@@ -3,9 +3,11 @@ package program.model;
 public class ProfilModel {
 
     private String name, firstname, email, city;
-    private double seuil;
+    private float seuil;
 
-    public ProfilModel(String name, String firstname, String email, String city, double seuil){
+    public ProfilModel(){}
+
+    public ProfilModel(String name, String firstname, String email, String city, float seuil){
 
         this.name = name;
         this.firstname = firstname;
@@ -14,7 +16,7 @@ public class ProfilModel {
         this.seuil = seuil;
     }
 
-    public double getSeuil() {
+    public float getSeuil() {
         return seuil;
     }
 
@@ -50,7 +52,7 @@ public class ProfilModel {
         this.name = name;
     }
 
-    public void setSeuil(double seuil) {
+    public void setSeuil(float seuil) {
         this.seuil = seuil;
     }
 

@@ -83,7 +83,7 @@ public class CreerListController {
         ObservableList listArticles = listearticles.getSelectionModel().getSelectedItems();
             for (Object articlechoisi : listArticles) {
                 this.listecree.getItems().add(String.valueOf(articlechoisi));
-                this.total.setText(String.valueOf(prixtotal+=getPrix()));
+                this.total.setText(String.valueOf(prixtotal+=getPrix())+ " €");
             }
         }
 

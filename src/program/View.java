@@ -19,4 +19,5 @@ public class View {
     public static final String LISTE_DEPENSES = "src/resources/json/listeDepenses.json";
     public static final String MONTANT_DEPENSE = "src/resources/json/montantdepense.json";
     public static final String MONTANT_SEUIL = "src/resources/json/montantseuil.json";
+    public static final String PROFILJSON = "src/resources/json/profil.json";
 }

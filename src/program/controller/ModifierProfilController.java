@@ -11,8 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import program.ReadorWriteJSONFile.ReadMontantSeuilJSON;
+import program.ReadorWriteJSONFile.ReadProfil;
 import program.ReadorWriteJSONFile.WriteMontantSeuilJSON;
+import program.ReadorWriteJSONFile.WriteProfil;
 import program.View;
+import program.model.ProfilModel;
 
 import java.io.IOException;
 
@@ -44,11 +47,14 @@ public class ModifierProfilController {
     void init (ObservableList<String>listedepenseObservable,ObservableLongValue depenseobservable){
         this.listedepensesObservable = listedepenseObservable;
         this.depenseobservable = depenseobservable;
-        nom =  nomtext.getText();
-        prenom =  prenomtext.getText();
-        mail =  mailtext.getCharacters().toString();
-        ville =  villetext.getText();
-        seuiltext.setText("0");
+        ReadProfil reader = new ReadProfil();
+        ProfilModel profilModel = reader.readFromJSON(View.PROFILJSON);
+
+        nomtext.setText(profilModel.getName());
+        prenomtext.setText(profilModel.getFirstname());
+        mailtext.setText(profilModel.getEmail());
+        villetext.setText(profilModel.getCity());
+        seuiltext.setText(String.valueOf(profilModel.getSeuil()));
 
         seuilobservable = ReadMontantSeuilJSON.ReadMontantSeuilJSON("src/resources/json/montantseuil.json");
 
@@ -56,10 +62,13 @@ public class ModifierProfilController {
     }
 
     private void enregistrer(){
-        long seuil = Long.valueOf(seuiltext.getText());
-        ((SimpleLongProperty) seuilobservable).set(seuil);
+        float seuil = Float.valueOf(seuiltext.getText());
+        ((SimpleLongProperty) seuilobservable).set((long)seuil);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Profil.fxml"));
-        WriteMontantSeuilJSON writeMontantSeuilJSON = new WriteMontantSeuilJSON(seuil);
+        WriteMontantSeuilJSON writeMontantSeuilJSON = new WriteMontantSeuilJSON((long)seuil);
+        ProfilModel profilModel =new ProfilModel(nomtext.getText(), prenomtext.getText(),mailtext.getText(),villetext.getText(), new Float(seuiltext.getText()));
+        WriteProfil writer = new WriteProfil();
+        writer.update(profilModel);
         try {
             Stage window = (Stage) enregistrerbouton.getScene().getWindow();
             Parent accueilparent = loader.load(getClass().getResourceAsStream(View.PROFIL));
@@ -67,7 +76,6 @@ public class ModifierProfilController {
 
             window.setScene(accueilscene);
             window.setTitle("Profil");
-            ((ProfilController)loader.getController()).modificationprofil(prenom,nom,mail,ville,seuil);
             ((ProfilController)loader.getController()).init(listedepensesObservable,depenseobservable,seuilobservable);
 
             window.show();

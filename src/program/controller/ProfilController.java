@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadorWriteJSONFile.ReadMontantSeuilJSON;
+import program.ReadorWriteJSONFile.ReadProfil;
 import program.ReadorWriteJSONFile.WriteMontantSeuilJSON;
 import program.View;
 import program.model.ProfilModel;
@@ -57,7 +58,8 @@ public class ProfilController {
         this.depenseobservable = depenseobservable;
         this.seuilobservable = seuilobservable;
         listeDepensesObservable = listedepenseObservable;
-        ProfilModel profilModel = new ProfilModel("Maxime","CASTELLANO","thune@unice.fr","New York",300);
+        ReadProfil reader = new ReadProfil();
+        ProfilModel profilModel = reader.readFromJSON(View.PROFILJSON);
 
         firstname.setText(profilModel.getFirstname());
         name.setText(profilModel.getName());

@@ -48,6 +48,8 @@ public class ViewArticle {
     public void display(Article article){
         this.currentarticle = article;
 
+        this.modifierbutton.setVisible(false);
+
 
 
         this.nomarticle.setText(this.currentarticle.getNom());

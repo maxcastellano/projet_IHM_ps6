@@ -63,9 +63,8 @@ public class ArticlesController {
         this.seuilobservable = seuilobservable;
         listedepensesObservable = listedepenses;
         reader = new ReadArticleJSON();
-        articleObservableList = reader.readFromJSON(View.ARTICLEJSON);
 
-        list.setItems(articleObservableList);
+
         nomcolumn.setCellValueFactory(cellData -> cellData.getValue().getStrNom());
         prixcolumn.setCellValueFactory(cellData -> cellData.getValue().getStrPrix());
 
@@ -73,10 +72,36 @@ public class ArticlesController {
         comboBox.getItems().setAll(Catégorie.values());
         comboBox.getSelectionModel().select(0);
 
+        articleObservableList=reader.readFromJSON(View.ARTICLEJSON);
+        list.setItems(articleObservableList);
+
         buttonAccueil.setOnAction(event -> gotoAccueil());
 
         buttonAdd.setOnAction(event -> this.createArticle());
+
+        this.recherche.setVisible(false);
+
+      //  comboBox.setOnAction(event -> this.sort());
     }
+
+
+   /* private void sort(){
+
+        this.comboBox.setOnShown(e -> {
+            ObservableList<Article> tmp = reader.readFromJSON(View.ARTICLEJSON);
+            articleObservableList =  FXCollections.observableArrayList();
+
+            for( Article article : tmp){
+                System.out.println(article.getCatégorie());
+                if( article.getCatégorie() == this.comboBox.getValue()){
+                    System.out.println("salut");
+                    articleObservableList.add(article);
+                }
+
+            }
+        });
+
+    }*/
 
 
 
