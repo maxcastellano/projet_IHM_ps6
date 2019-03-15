@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadArticleJSON;
@@ -55,8 +52,6 @@ public class CreerListController {
     private ArrayList<Article> articleschoisis = new ArrayList<>();
     private static ObservableList<ListCourse> listeCourseObservableList ;
     private static ObservableList<String> listeDepenseObservableList;
-    private long depensemontant;
-    private long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
     private ReadArticleJSON reader;
@@ -110,6 +105,14 @@ public class CreerListController {
 
     private void creerListe(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/Listes_Courses.fxml"));
+        if(this.articleschoisis.isEmpty() || this.saisienom.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez choisir un nom pour la liste et ajouter au moins un article");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return;
+        }
         ListCourse listCourse= new ListCourse(this.articleschoisis,this.saisienom.getText());
 
         try {

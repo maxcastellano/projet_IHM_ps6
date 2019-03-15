@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import program.ReadorWriteJSONFile.ReadMontantSeuilJSON;
+import program.ReadorWriteJSONFile.WriteMontantSeuilJSON;
 import program.View;
 import program.model.ProfilModel;
 
@@ -47,8 +49,6 @@ public class ProfilController {
     private Button modifierprofil;
 
     private static ObservableList<String> listeDepensesObservable;
-    private long depensemontant;
-    private long seuilmontant;
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
 
@@ -99,6 +99,15 @@ public class ProfilController {
         alert.showAndWait();
     }
 
+    void modificationprofil(String prenom, String nom, String mail, String ville, long seuil){
+        this.firstname.setText(nom);
+        this.name.setText(prenom);
+        this.email.setText(mail);
+        this.city.setText(ville);
+
+        this.limit.setText(String.valueOf(seuil));
+    }
+
     private void allerdansmodifierprofil() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/modifierprofil.fxml"));
 
@@ -110,7 +119,7 @@ public class ProfilController {
             window.setScene(modifierscene);
             window.setTitle("Modifier profil");
 
-            //((ModifierProfilController)loader.getController()).init();
+            ((ModifierProfilController)loader.getController()).init(listeDepensesObservable,this.depenseobservable);
 
             window.show();
 

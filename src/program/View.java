@@ -17,4 +17,6 @@ public class View {
     public  static  final String LOGO = "resources/image/logo_polytech.png";
     public static final String CREER_ARTICLE = "../../resources/fxml/Create_Article.fxml";
     public static final String LISTE_DEPENSES = "src/resources/json/listeDepenses.json";
+    public static final String MONTANT_DEPENSE = "src/resources/json/montantdepense.json";
+    public static final String MONTANT_SEUIL = "src/resources/json/montantseuil.json";
 }

@@ -66,7 +66,7 @@ public class AccueilController {
         this.seuilobservable = seuilobservable;
         this.depense.setText(this.depenseobservable.get()+"€");
         this.depense.setFill(Color.rgb(0,255,0,1));
-        if(this.depenseobservable.longValue() > this.seuilobservable.longValue()){this.depense.setFill(Color.rgb(255, 0, 0, 1));}
+        if(this.depenseobservable.longValue() > this.seuilobservable.longValue() && this.seuilobservable.longValue() > 0){this.depense.setFill(Color.rgb(255, 0, 0, 1));}
         this.seuil.setText(this.seuilobservable.get()+"€");
 
         listedepenseObservable = listedepenseObservableListe;
