@@ -1,5 +1,6 @@
 package program.controller;
 
+import program.ReadListCourseJSON;
 import program.ReadorWriteJSONFile.ReadListeDepensesJSON;
 import program.ReadorWriteJSONFile.WriteListeDepenseJSON;
 import javafx.beans.value.ObservableLongValue;
@@ -54,7 +55,8 @@ public class ListeController {
         this.depenseobservable = depenseobservalbe;
         this.seuilobservable = seuilobservable;
         this.listedepenseObservable = listedepenseObservable;
-        listCourseObservableList = listCourses;
+        ReadListCourseJSON readerlist = new ReadListCourseJSON();
+        listCourseObservableList = readerlist.readFromJSON(View.LISTEJSON);
         this.retourliste.setOnAction(event -> retourListeCourses());
         this.payerbouton.setOnAction(event -> ajouterlistedepense());
         listeDepense = ReadListeDepensesJSON.readFromJSON(View.LISTE_DEPENSES);
@@ -109,7 +111,6 @@ public class ListeController {
     private void ajouterlistedepense(){
         Depense depense = payerListeCourse();
         listeDepense.add(0,depense);
-        this.writeListeDepenseJSON.clear();
         for(Depense elementdepense: listeDepense) {
             this.writeListeDepenseJSON.addDepense(elementdepense);
         }

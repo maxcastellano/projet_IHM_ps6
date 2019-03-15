@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadArticleJSON;
 import program.View;
+import program.WriteListeJson;
 import program.model.Article;
 import program.model.ListCourse;
 
@@ -115,6 +116,13 @@ public class CreerListController {
         }
         ListCourse listCourse= new ListCourse(this.articleschoisis,this.saisienom.getText());
 
+        WriteListeJson writeListeJson = new WriteListeJson();
+        for(ListCourse listCourse1: listeCourseObservableList ){
+            writeListeJson.addList(listCourse1);
+        }
+        writeListeJson.addList(listCourse);
+        writeListeJson.writeFile();
+
         try {
             Stage window = (Stage) creerbouton.getScene().getWindow();
 
@@ -123,7 +131,6 @@ public class CreerListController {
             window.setScene(listedescoursesscene);
             window.setTitle("Liste des Courses");
 
-            ((ListesCoursesController)loader.getController()).addListeCourse(listCourse);
             ((ListesCoursesController)loader.getController()).init(listeCourseObservableList,listeDepenseObservableList,this.depenseobservable,this.seuilobservable);
 
             window.show();

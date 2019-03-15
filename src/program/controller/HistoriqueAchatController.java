@@ -9,14 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import program.ReadorWriteJSONFile.ReadListeDepensesJSON;
 import program.ReadorWriteJSONFile.ReadMontantDepenseJSON;
 import program.ReadorWriteJSONFile.WriteMontantDepenseJSON;
 import program.View;
+import program.model.Depense;
 import program.model.HistoriqueAchats;
 import program.model.ListCourse;
 
@@ -33,9 +37,13 @@ public class HistoriqueAchatController {
     @FXML
     private Button accueilbouton;
 
+    @FXML
+    private LineChart<?, ?> graph;
+
     private ObservableList<String> listedepensesObservable = FXCollections.observableArrayList();
     private ObservableLongValue depenseobservable;
     private ObservableLongValue seuilobservable;
+    private  ObservableList<Depense> listedepenseObservableGraph = FXCollections.observableArrayList();
 
 
      void init(ObservableList<String>listedepensesObservable, ObservableLongValue depenseobservalbe, ObservableLongValue seuilobservable){
@@ -47,6 +55,19 @@ public class HistoriqueAchatController {
         choiceboxHA.getSelectionModel().select(1);
 
         accueilbouton.setOnAction(event -> gotoaccueil());
+
+         ReadListeDepensesJSON readDepense = new ReadListeDepensesJSON();
+         this.listedepenseObservableGraph = readDepense.readFromJSON(View.LISTE_DEPENSES);
+
+
+         XYChart.Series series = new XYChart.Series();
+         int i=0;
+         for (Depense depense: this.listedepenseObservableGraph){
+             series.getData().add(new XYChart.Data(String.valueOf(i),depense.getPrix()));
+             i++;
+         }
+
+         this.graph.getData().addAll(series);
     }
 
     private void gotoaccueil(){

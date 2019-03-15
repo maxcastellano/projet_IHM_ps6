@@ -16,8 +16,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import program.ReadListCourseJSON;
+import program.ReadorWriteJSONFile.ReadListeDepensesJSON;
+import program.View;
 import program.model.AccueilModel;
 
+import program.model.Depense;
 import program.model.ListCourse;
 
 
@@ -57,6 +60,7 @@ public class AccueilController {
 
     private ObservableList<ListCourse> listCourses;
     private  ObservableList<String> listedepenseObservable = FXCollections.observableArrayList();
+    private  ObservableList<Depense> listedepenseObservableGraph = FXCollections.observableArrayList();
     private  ObservableLongValue depenseobservable;
     private  ObservableLongValue seuilobservable;
 
@@ -80,15 +84,19 @@ public class AccueilController {
         profilbouton.setOnAction(event -> gotoprofil());
         historiquebouton.setOnAction(event -> gothistorique());
         articlesbouton.setOnAction(event -> gotoarticle());
-/*
+
+        ReadListeDepensesJSON readDepense = new ReadListeDepensesJSON();
+        this.listedepenseObservableGraph = readDepense.readFromJSON(View.LISTE_DEPENSES);
+
+
         XYChart.Series series = new XYChart.Series();
         int i=0;
-        for (ListCourse listCourse: this.listeDepense){
-            series.getData().add(new XYChart.Data(String.valueOf(listCourse.getPrix()),i));
+        for (Depense depense: this.listedepenseObservableGraph){
+            series.getData().add(new XYChart.Data(String.valueOf(i),depense.getPrix()));
             i++;
         }
 
-        this.graph.getData().addAll(series);*/
+        this.graph.getData().addAll(series);
         
     }
 

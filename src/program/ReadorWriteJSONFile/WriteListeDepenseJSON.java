@@ -32,7 +32,6 @@ public class WriteListeDepenseJSON {
 
         JSONArray array= (JSONArray) data.get("Liste des Dépenses");
 
-
         array.add(jsonDepense);
     }
 
