@@ -120,7 +120,7 @@ public class CreerListController {
         for(ListCourse listCourse1: listeCourseObservableList ){
             writeListeJson.addList(listCourse1);
         }
-        writeListeJson.addList(listCourse);
+        //writeListeJson.addList(listCourse);
         writeListeJson.writeFile();
 
         try {
