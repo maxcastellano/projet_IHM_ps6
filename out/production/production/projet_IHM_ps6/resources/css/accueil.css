@@ -1,0 +1,78 @@
+.root
+{
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-insets: 5px;
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+    -fx-background-color: azure;
+    -fx-background-insets: 5px;
+}
+
+
+.button
+{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-color: silver;
+    -fx-background-insets: 4;
+    -fx-background-radius: 8;
+
+}
+
+.button:hover{
+    -fx-background-color: cyan;
+}
+
+.label
+{
+    -fx-font-family: "arial";
+    -fx-font-size: 15px;
+    -fx-font-weight: bolder;
+}
+
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: 0.0;
+    -fx-padding: 0.0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow,
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: 0.0;
+    -fx-padding: 0.0;
+    -fx-shape: null;
+}
+
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #FFE3C1;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-color: #BCD4E5;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-table-cell-border-color: #E0F2FF;
+}
+
+.table-view .column-header {
+ -fx-font-weight: bold;
+   -fx-background-color: #FFF5EF;
+}
+
+.table-view .column-header .text {
+  -fx-underline: true;
+}
+
+.table-cell {
+    -fx-alignment: BASELINE_CENTER;
+ }
+
+
+

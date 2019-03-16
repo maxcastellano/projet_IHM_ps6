@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.ListeController">
+   <top>
+      <Text fx:id="nomliste" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="articlesliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
+               </VBox.margin>
+            </ListView>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Label text="Total">
+                     <VBox.margin>
+                        <Insets left="400.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="total" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <VBox.margin>
+                        <Insets left="400.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Button fx:id="payerbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" text="Payer">
+                     <HBox.margin>
+                        <Insets bottom="40.0" left="400.0" right="20.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="retourliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="44.0" prefWidth="60.0" text="Retour">
+                     <HBox.margin>
+                        <Insets bottom="40.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

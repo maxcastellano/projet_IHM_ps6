@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.ListesCoursesController">
+   <center>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ChoiceBox fx:id="choicebox" maxHeight="1.7976931348623157E308" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="200.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <TableView fx:id="tablelistes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+              <columns>
+                <TableColumn fx:id="nomcolonne" prefWidth="285.0" text="Nom" />
+                <TableColumn fx:id="prixcolonne" prefWidth="275.0" text="Prix" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="559.0" prefWidth="152.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="retouraccueil" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Accueil">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="creerlistebouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Créer Liste">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="detailsbouton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Voir Détails/Payer">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <top>
+      <Label text="Liste de courses" BorderPane.alignment="TOP_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="20.0" top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>

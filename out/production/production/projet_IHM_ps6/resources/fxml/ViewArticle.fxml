@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="365.0" stylesheets="@../css/accueil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.controller.ViewArticle">
+   <children>
+      <Label layoutX="117.0" layoutY="44.0" text="Nom de l'article :" />
+      <Label layoutX="117.0" layoutY="101.0" text="Prix de l'article :" />
+      <Label fx:id="categorie" layoutX="104.0" layoutY="160.0" text="Catégorie de l'article :" />
+      <Button fx:id="suppbutton" layoutX="175.0" layoutY="228.0" mnemonicParsing="false" text="Supprimer" />
+      <Button fx:id="modifierbutton" layoutX="14.0" layoutY="228.0" mnemonicParsing="false" text="Modifier" />
+      <Label fx:id="nomarticle" layoutX="148.0" layoutY="71.0" text="Label" />
+      <Label fx:id="prixarticle" layoutX="149.0" layoutY="127.0" text="Label" />
+      <Label fx:id="categoriearticle" layoutX="149.0" layoutY="187.0" text="Label" />
+      <Button fx:id="okbutton" layoutX="303.0" layoutY="228.0" mnemonicParsing="false" text="Ok" />
+   </children>
+</AnchorPane>

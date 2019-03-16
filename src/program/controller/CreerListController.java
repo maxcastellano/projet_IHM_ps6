@@ -115,7 +115,7 @@ public class CreerListController {
             return;
         }
         ListCourse listCourse= new ListCourse(this.articleschoisis,this.saisienom.getText());
-
+        listeCourseObservableList.add(listCourse);
         WriteListeJson writeListeJson = new WriteListeJson();
         for(ListCourse listCourse1: listeCourseObservableList ){
             writeListeJson.addList(listCourse1);
